@@ -69,7 +69,7 @@ public class MapArena extends View { //implements Serializable
     public MapArena(Context c) {
         super(c);
         black.setStyle(Paint.Style.FILL_AND_STROKE);
-        unexploredCellColor.setColor(Color.BLACK); // light teal: 0xFFD4F6F2
+        unexploredCellColor.setColor(Color.parseColor("#eec9d2")); // light teal: 0xFFD4F6F2
         robotColor.setColor(Color.RED); //GREEN
         lineColor.setColor(0xFFBDBDBD); // white / 0xFF757575 / 0xFFBDBDBD LIGHTER //FF69B4 //RED = 0xFFBDBDBD
     }
@@ -80,7 +80,8 @@ public class MapArena extends View { //implements Serializable
         this.attrs = attrs;
 
         black.setStyle(Paint.Style.FILL_AND_STROKE);
-        unexploredCellColor.setColor(Color.BLACK);
+        //unexploredCellColor.setColor(Color.RED);
+        unexploredCellColor.setColor(Color.parseColor("#eec9d2"));
         robotColor.setColor(Color.RED);
         lineColor.setColor(0xFFBDBDBD);
     }
@@ -132,52 +133,64 @@ public class MapArena extends View { //implements Serializable
             TableRow tableRow = new TableRow(this.getContext());
             TextView obstacleNumberText = new TextView(this.getContext());
             obstacleNumberText.setText(String.valueOf(obstacleNumber));
-            obstacleNumberText.setTextColor(Color.WHITE);
-            obstacleNumberText.setTypeface(mainFont);
+            obstacleNumberText.setTextColor(Color.BLACK);
+            obstacleNumberText.setTypeface(mainFont, Typeface.BOLD);
             int textSize = 15;
             obstacleNumberText.setTextSize(textSize);
-            obstacleNumberText.setPadding(20, 5, 0, 10);
+            obstacleNumberText.setPadding(17, 5, 0, 10);
             int[] obstacleCoordinates = obstacleDetails.getCoordinates();
             int xCoordinate = obstacleCoordinates[0];
             int yCoordinate = obstacleCoordinates[1];
             EditText xCoordinateText = new EditText(this.getContext());
-            xCoordinateText.setTextColor(Color.WHITE);
+            xCoordinateText.setTextColor(Color.BLACK);
             xCoordinateText.setText(String.valueOf(xCoordinate));
-            xCoordinateText.setTypeface(mainFont);
+            xCoordinateText.setTypeface(mainFont, Typeface.BOLD);
             xCoordinateText.setTextSize(textSize);
-            xCoordinateText.setPadding(18, 0, 0, 10);
+            if(xCoordinate >= 10) {
+                xCoordinateText.setPadding(18, 0, 0, 10);
+            }
+            else {
+                xCoordinateText.setPadding(23, 0, 0, 10);
+            }
             EditText yCoordinateText = new EditText(this.getContext());
             yCoordinateText.setText(String.valueOf(yCoordinate));
-            yCoordinateText.setTextColor(Color.WHITE);
+            yCoordinateText.setTextColor(Color.BLACK);
             yCoordinateText.setTextSize(textSize);
-            yCoordinateText.setTypeface(mainFont);
-            yCoordinateText.setPadding(35, 5, 0, 10);
+            yCoordinateText.setTypeface(mainFont, Typeface.BOLD);
+            if(yCoordinate >= 10) {
+                yCoordinateText.setPadding(23, 5, 0, 10);
+            }
+            else{
+                yCoordinateText.setPadding(30, 5, 0, 10);
+            }
             TextView faceText = new TextView(this.getContext());
             faceText.setText(getTargetFaceDisplayString(obstacleDetails.getObstacleFace()));
-            faceText.setTextColor(Color.WHITE);
+            faceText.setTextColor(Color.BLACK);
             faceText.setTextSize(textSize);
-            faceText.setTypeface(mainFont);
-            faceText.setPadding(30, 5, 0, 10);
+            faceText.setTypeface(mainFont, Typeface.BOLD);
+            faceText.setPadding(40, 5, 0, 10);
             // Delete obstacle button
             int desiredWidthInPixels = 16; // Replace with your desired width
             int desiredHeightInPixels = 16; // Replace with your desired height
             ImageButton deleteObstacleButton = new ImageButton(this.getContext());
-            deleteObstacleButton.setBackgroundColor(Color.BLACK);
+            deleteObstacleButton.setBackgroundColor(Color.parseColor("#eec9d2"));
             Drawable originalDrawable = getResources().getDrawable(R.drawable.delete_button);
             Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, desiredWidthInPixels, desiredHeightInPixels, true);
             Drawable scaledDrawable = new BitmapDrawable(getResources(), scaledBitmap);
             deleteObstacleButton.setImageDrawable(scaledDrawable);
-            deleteObstacleButton.setPadding(30, 5, 0, 10);
+            //deleteObstacleButton.setPadding(40, 10, 0, 10);
+            deleteObstacleButton.setPadding(42, 10, 0, 10);
             // Save obstacle co-ordinates
             ImageButton saveCoordinatesButton = new ImageButton(this.getContext());
-            saveCoordinatesButton.setBackgroundColor(Color.BLACK);
+            saveCoordinatesButton.setBackgroundColor(Color.parseColor("#eec9d2"));
             Drawable saveIcon = getResources().getDrawable(R.drawable.save_icon);
             Bitmap saveIconBitmap = ((BitmapDrawable) saveIcon).getBitmap();
             Bitmap scaledSaveIconBitmap = Bitmap.createScaledBitmap(saveIconBitmap, desiredWidthInPixels, desiredHeightInPixels, true);
             Drawable scaledSaveIconDrawable = new BitmapDrawable(getResources(), scaledSaveIconBitmap);
             saveCoordinatesButton.setImageDrawable(scaledSaveIconDrawable);
-            saveCoordinatesButton.setPadding(35, 5, 0, 10);
+            //saveCoordinatesButton.setPadding(63, 10, 0, 10);
+            saveCoordinatesButton.setPadding(50, 10, 0, 10);
             deleteObstacleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -195,7 +208,7 @@ public class MapArena extends View { //implements Serializable
                     int newXCoordinate = (int) (((Integer.parseInt(mapXCoordinate) + 1) * cellSize) + getX());
                     int newYCoordinate = (int) (((19 - Integer.parseInt(mapYCoordinate)) * cellSize) + getY());
                     updateObstacleCoordinatesInArena(obstacleNumber, newXCoordinate, newYCoordinate);
-                    String outputNotification = String.format("Obstacle: %d, Col: %s, Row: %s", obstacleNumber, mapXCoordinate, mapYCoordinate);
+                    String outputNotification = String.format("Obstacle: %d, Row: %s, Col: %s", obstacleNumber, mapXCoordinate, mapYCoordinate);
                     outputNotifView.setText(outputNotification);
                     ViewGroup obstacle = obstacleViews.get(obstacleNumber);
                     obstacle.setX(newXCoordinate);
@@ -212,6 +225,7 @@ public class MapArena extends View { //implements Serializable
             tableRow.addView(xCoordinateText);
             tableRow.addView(yCoordinateText);
             tableRow.addView(faceText);
+            //tableRow.setPadding(5,0,0,0);
             tableRow.addView(deleteObstacleButton);
             tableRow.addView(saveCoordinatesButton);
             obstacleInformationTable.addView(tableRow);
@@ -289,18 +303,18 @@ public class MapArena extends View { //implements Serializable
     }
 
     private void drawGridAxes(Canvas canvas) {
-        black.setColor(Color.WHITE);
+        black.setColor(Color.BLACK);
         black.setTextSize(16);
         black.setTypeface(mainFont);
         for (int x = 1; x <= COL; x++) {
-            if (x > 9)
-                canvas.drawText(Integer.toString(x-1), cells[x][20].startX, cells[x][20].startY + (cellSize / 3) + 5, black);
+            if (x > 10)
+                canvas.drawText(Integer.toString(x-1), cells[x][20].startX+ (cellSize / 5) , cells[x][20].startY + (cellSize /3) +5, black);
             else
                 canvas.drawText(Integer.toString(x-1), cells[x][20].startX + (cellSize / 3), cells[x][20].startY + (cellSize / 3) + 5, black);
         }
         for (int y = 0; y < ROW; y++) {
             if ((20 - y) > 10)
-                canvas.drawText(Integer.toString(19 - y), cells[0][y].startX, cells[0][y].startY + (cellSize / 1.5f), black);
+                canvas.drawText(Integer.toString(19 - y), cells[0][y].startX + (cellSize / 5) , cells[0][y].startY + (cellSize / 1.5f), black);
             else
                 canvas.drawText(Integer.toString(19 - y), cells[0][y].startX + (cellSize / 2.5f), cells[0][y].startY + (cellSize / 1.5f), black);
         }

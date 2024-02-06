@@ -420,7 +420,7 @@
                     android:layout_span="2"
                     android:text="Notifications"
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
@@ -442,10 +442,12 @@
                     android:id="@+id/notifications"
                     android:layout_height="19dp"
                     android:layout_span="2"
+
                     android:text=""
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12sp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace"
                     app:layout_anchorGravity="center" />
 
@@ -468,7 +470,7 @@
                     android:background="@drawable/border"
                     android:text="@string/robot_location_header"
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
@@ -493,9 +495,10 @@
                     android:background="@drawable/border"
                     android:text=""
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12sp"
                     app:fontFamily="monospace"
+                    android:textStyle="bold"
                     app:layout_anchorGravity="center" />
 
             </TableRow>
@@ -520,7 +523,7 @@
                 android:id="@+id/initialObstacleBox"
                 android:layout_width="34px"
                 android:layout_height="34px"
-                android:src="@drawable/blue_obstacle"
+                android:src="@drawable/pink_box"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -530,7 +533,7 @@
                 android:id="@+id/initialObstacleFace"
                 android:layout_width="34px"
                 android:layout_height="34px"
-                android:src="@drawable/blue_obstacle_face"
+                android:src="@drawable/pink_box"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -542,7 +545,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@string/obstacle1ID_text"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="12sp"
                 app:fontFamily="monospace"
                 app:layout_constraintBottom_toBottomOf="@+id/initialObstacleFace"
@@ -563,7 +566,8 @@
             <TableRow
                 android:id="@+id/generator_header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="0.5dp">
 
                 <TextView
                     android:id="@+id/obstacleGenerator"
@@ -573,7 +577,7 @@
                     android:padding="8dp"
                     android:text="@string/obstacle_generator"
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -582,10 +586,11 @@
                     android:layout_width="94dp"
                     android:layout_height="50dp"
                     android:background="@drawable/border"
+                    android:layout_marginLeft="1dp"
                     android:padding="8dp"
                     android:text="@string/pacbot_generator"
                     android:textAlignment="center"
-                    android:textColor="#FFF"
+                    android:textColor="#000"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -594,7 +599,7 @@
 
         <TableLayout
             android:id="@+id/obstacleInformation"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="6dp"
@@ -613,7 +618,21 @@
                     android:gravity="center"
                     android:padding="5dip"
                     android:text="No."
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    app:fontFamily="monospace" />
+
+                <TextView
+                    android:layout_height="23dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:padding="5dip"
+                    android:layout_marginLeft="1dp"
+                    android:text="Row"
+                    android:textColor="#000"
+                    android:textStyle="bold"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -624,7 +643,9 @@
                     android:gravity="center"
                     android:padding="5dip"
                     android:text="Col"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -634,19 +655,10 @@
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
-                    android:text="Row"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12dp"
-                    app:fontFamily="monospace" />
-
-                <TextView
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border"
-                    android:gravity="center"
-                    android:padding="5dip"
+                    android:layout_marginLeft="1dp"
                     android:text="Face"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000"
+                    android:textStyle="bold"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -656,8 +668,10 @@
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
-                    android:text="X"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="1dp"
+                    android:text="Remove"
+                    android:textColor="#000"
+                    android:textStyle="bold"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -668,7 +682,9 @@
                     android:gravity="center"
                     android:padding="5dip"
                     android:text="Save"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
                     android:textSize="12dp"
                     app:fontFamily="monospace" />
 
@@ -797,18 +813,18 @@
             android:id="@+id/generateRobot"
             android:layout_width="94dp"
             android:layout_height="45dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="33dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/border_2"
+            android:background="@drawable/border"
             android:clickable="true"
             android:focusable="true"
-            android:maxWidth="40dp"
-            android:maxHeight="40dp"
+            android:maxWidth="30dp"
+            android:maxHeight="30dp"
             android:scaleType="fitCenter"
             android:src="@drawable/generate_button"
             app:layout_constraintBottom_toTopOf="@+id/generator"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="#FFFFFF" />
+            app:tint="#EF0C0C" />
 
         <TableLayout
             android:id="@+id/d_pad"
