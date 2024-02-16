@@ -56,7 +56,7 @@ public class MapArena extends View { //implements Serializable
     // Stores obstacle information
     // Integer --> obstacle number
     // obstacleDetails --> stores obstacle info
-    private static Map <Integer, ObstacleDetails> obstacleInformation = new HashMap<>();
+    protected static Map <Integer, ObstacleDetails> obstacleInformation = new HashMap<>();
     private static int[] oldCoord = new int[]{-1, -1};
 
     private Paint black = new Paint();

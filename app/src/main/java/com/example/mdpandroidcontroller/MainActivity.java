@@ -1,5 +1,6 @@
 package com.example.mdpandroidcontroller;
 
+import static com.example.mdpandroidcontroller.MapArena.obstacleInformation;
 import static java.lang.Integer.parseInt;
 
 import android.Manifest;
@@ -19,6 +20,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+
+import java.io.ObjectInputStream;
 import java.util.Map;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,6 +37,7 @@ import android.util.Log;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.navigation.NavController;
@@ -74,7 +78,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerBaseActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -271,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
     //UUID
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
+    ActivityMainBinding activityMainBinding;
     BluetoothAdapter mBlueAdapter = BluetoothAdapter.getDefaultAdapter();
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -303,14 +308,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        setSupportActionBar(binding.toolbar);
+        setContentView(activityMainBinding.getRoot());
+        allocateActivityTitle("Robot Car");
+
+        setSupportActionBar(activityMainBinding.toolbar);
+
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
         TableLayout obstacleInformationTable = findViewById(R.id.obstacleInformation);
 
         //mStatusBlueTv = findViewById(R.id.statusBluetoothTv);
@@ -353,6 +362,19 @@ public class MainActivity extends AppCompatActivity {
         MyObserver observer = new MyObserver(subject);
         Constants constants = new Constants(subject);
 
+        Button faceButton = findViewById(R.id.face_button);
+        faceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //ObstacleDetails obstacle = obstacleInformation.get(obstacleNumber);
+
+
+
+            }
+
+        });
+
         ConstraintLayout initialObstacleGrp = (ConstraintLayout) findViewById(R.id.initialObstacle);
         ImageView initialObstacleBox = (ImageView) findViewById(R.id.initialObstacleBox);
         ImageView initialObstacleFace = (ImageView) findViewById(R.id.initialObstacleFace);
@@ -366,6 +388,9 @@ public class MainActivity extends AppCompatActivity {
         obstacleBoxViews.add(initialObstacleBox);
         obstacleFaceViews2.put(1, initialObstacleFace);
         obstacleTextViews.put(1, initialObstacleId);
+        //comment out later
+        ViewGroup parentView = (ViewGroup) map.getParent();
+        /*
         Button preloadObstaclesButton = (Button) findViewById(R.id.preloadObstaclesButton);
         Spinner spinner = findViewById(R.id.numberOfPreloadedObstacles);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -377,56 +402,58 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         ViewGroup parentView = (ViewGroup) map.getParent();
         preloadObstaclesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userInput = spinner.getSelectedItem().toString();
-                int numberOfObstacles = 0;
-                try {
-                    numberOfObstacles = Integer.parseInt(userInput);}
-                catch (NumberFormatException e) {
-                    numberOfObstacles = 0;
-                }
-                int mapCellSize = (int) map.getCellSize();
-                int xMapCoordinate = 19;
-                int yMapCoordinate = 1;
-                for (int j = 0; j < numberOfObstacles; j++) {
-                    int newObstacleNumber = obstacleViews.size() + 1;
-                    while (obstacleViews.get(newObstacleNumber) != null) {
-                        newObstacleNumber++;
-                    }
-                    ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
-                    ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
-                    ConstraintSet constraintSet = new ConstraintSet();
-                    constraintSet.clone(fullScreen);
-                    constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
-                    constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
-                    constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
-                    constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
-                    constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
-                    constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
-                    // Apply the constraints to the parent ConstraintLayout
-                    constraintSet.applyTo(fullScreen);
-                    int xCoordinate = ((xMapCoordinate + 1) * mapCellSize) + (int) map.getX();
-                    int yCoordinate = ((19 - yMapCoordinate) * mapCellSize) + (int) map.getY();
-                    map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
-                    latestObstacleCoordinates.put(newObstacleNumber, new int[] {xCoordinate, yCoordinate});
-                    newObstacle.setX(xCoordinate);
-                    newObstacle.setY(yCoordinate);
-                    map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
-                    map.invalidate();
-                    // Notification
-                    outputNotif = String.format("Obstacle: %d, Col: %d, Row: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
-                    outputNotifView.setText(outputNotif);
+                                                      @Override
+                                                      public void onClick(View view) {
+                                                          String userInput = spinner.getSelectedItem().toString();
+                                                          int numberOfObstacles = 0;
+                                                          try {
+                                                              numberOfObstacles = Integer.parseInt(userInput);}
+                                                          catch (NumberFormatException e) {
+                                                              numberOfObstacles = 0;
+                                                          }
+                                                          int mapCellSize = (int) map.getCellSize();
+                                                          int xMapCoordinate = 19;
+                                                          int yMapCoordinate = 1;
+                                                          for (int j = 0; j < numberOfObstacles; j++) {
+                                                              int newObstacleNumber = obstacleViews.size() + 1;
+                                                              while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                  newObstacleNumber++;
+                                                              }
+                                                              ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                              ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                              ConstraintSet constraintSet = new ConstraintSet();
+                                                              constraintSet.clone(fullScreen);
+                                                              constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                              constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                              constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                              constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                              constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                              constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+                                                              // Apply the constraints to the parent ConstraintLayout
+                                                              constraintSet.applyTo(fullScreen);
+                                                              int xCoordinate = ((xMapCoordinate + 1) * mapCellSize) + (int) map.getX();
+                                                              int yCoordinate = ((19 - yMapCoordinate) * mapCellSize) + (int) map.getY();
+                                                              map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+                                                              latestObstacleCoordinates.put(newObstacleNumber, new int[] {xCoordinate, yCoordinate});
+                                                              newObstacle.setX(xCoordinate);
+                                                              newObstacle.setY(yCoordinate);
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
                     /*if (Constants.connected) {
                         byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
                         BluetoothChat.writeMsg(bytes);
-                    }*/
-                    yMapCoordinate += 2;
-                    // Check that popup still opens (if branch)
-                }
-            }
-        }
+                    }
+                                                              yMapCoordinate += 2;
+                                                              // Check that popup still opens (if branch)
+                                                          }
+                                                      }
+                                                  }
         );
+        */
+
 
         //TEXTVIEWS
         outputNotifView = (TextView) findViewById(R.id.notifications);
@@ -481,14 +508,14 @@ public class MainActivity extends AppCompatActivity {
             robot.setVisibility(View.INVISIBLE);
         }
 
-
+/*
         findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*Intent intent = new Intent(getContext(), SecondFragment.class);
                 BluetoothServices bluetoothServices = new BluetoothServices();
                 intent.putExtra("bluetooth_services", bluetoothServices);
-                startActivity(intent);*/
+                startActivity(intent);
 
                 Intent intent = new Intent(MainActivity.this, Connect.class);
                 startActivity(intent);
@@ -501,11 +528,12 @@ public class MainActivity extends AppCompatActivity {
                 bluetooth_discoverable();
             }
         });
-
+*/
 
         // NEW Short press and Long Press for ALL BUTTONS
         ImageButton forwardButton = (ImageButton) findViewById(R.id.arrowForward);
         ImageButton rightButton = (ImageButton) findViewById(R.id.arrowRight);
+        rightButton.setBackgroundColor(Color.TRANSPARENT);
         ImageButton leftButton = (ImageButton) findViewById(R.id.arrowLeft);
         ImageButton backButton = (ImageButton) findViewById(R.id.arrowBack);
         ImageButton nEButton = (ImageButton) findViewById(R.id.arrowNE);
@@ -1089,11 +1117,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };*/
         initialObstacleGrp.setOnTouchListener(obstacleOnTouchListener);
-
+/*
 
         /**
          * finally works - resets all obstacles to the original coordinates
-         */
+
         Button resetObstacles = (Button) findViewById(R.id.resetObstacles);
         resetObstacles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1126,8 +1154,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        */
+/*
         //POPUP BUTTONS
+        //just sends message to rpi that it's ready
         Button startRobot = (Button) findViewById(R.id.start_robot);
         startRobot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1145,24 +1175,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        ImageButton calculatePath = (ImageButton) findViewById(R.id.calculate);
-        calculatePath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //executeInstruction();
-                outputNotif = String.format("path");
-                outputNotifView.setText(outputNotif);
-
-                if (Constants.connected) {
-                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Calculate path", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-
-                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
-                    BluetoothChat.writeMsg(bytes);
-                }
-            }
-        });
+*/
+//        ImageButton calculatePath = (ImageButton) findViewById(R.id.calculate);
+//        calculatePath.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //executeInstruction();
+//                outputNotif = String.format("path");
+//                outputNotifView.setText(outputNotif);
+//
+//                if (Constants.connected) {
+//                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Calculate path", Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
+//
+//                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
+//                    BluetoothChat.writeMsg(bytes);
+//                }
+//            }
+//        });
 
 
         /**
@@ -1316,7 +1346,7 @@ public class MainActivity extends AppCompatActivity {
                         obstacleViews.remove(oldObstacleNumber);
                         obstacleViews.put(newObstacleNumber, oldObstacleView);
                         int[] coordinates = map.getObstacleCoordinates(newObstacleNumber);
-                        String notification = String.format("Obstacle: %d, Col: %d, Row: %d", newObstacleNumber, coordinates[0], coordinates[1]);
+                        String notification = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, coordinates[0], coordinates[1]);
                         outputNotifView.setText(notification);
                         String successfulObstacleChangeMessage = String.format("Successfully changed obstacle number from %d to %d!", oldObstacleNumber, newObstacleNumber);
                         Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), successfulObstacleChangeMessage, Snackbar.LENGTH_SHORT);
@@ -1405,7 +1435,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //FOR CHECKLIST
                 int[] obstacleCoordinates = map.getObstacleCoordinates(obstacleNumber);
-                outputNotif = String.format("Obstacle: %d, Col: %d, Row: %d, Facing: %s", obstacleNumber, obstacleCoordinates[0], obstacleCoordinates[1], facing);
+                outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d, Facing: %s", obstacleNumber, obstacleCoordinates[0], obstacleCoordinates[1], facing);
                 if (!facing.equals("error")) {
                     outputNotifView.setText(outputNotif);
 
@@ -1457,7 +1487,7 @@ public class MainActivity extends AppCompatActivity {
                         int xCoordinate = (int) dragEvent.getX();
                         int yCoordinate = (int) dragEvent.getY();
                         int[] obstacleCoordinates = map.calculateObstacleCoordinatesOnMap(xCoordinate, yCoordinate);
-                        String coordinatesNotification = String.format("Col: %d | Row: %d", obstacleCoordinates[0]-1, 19-obstacleCoordinates[1]);
+                        String coordinatesNotification = String.format("Row: %d | Col: %d", obstacleCoordinates[0]-1, 19-obstacleCoordinates[1]);
                         obstacleCoordinatesTextView.setX(xCoordinate);
                         obstacleCoordinatesTextView.setY(yCoordinate - 80);
                         obstacleCoordinatesTextView.setText(coordinatesNotification);
@@ -1534,7 +1564,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int col = newObstCoordColRow[2];
                         int row = newObstCoordColRow[3];
-                        outputNotif = String.format("Obstacle: %d, Col: %d, Row: %d", obstacleNumber, col, row);
+                        outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", obstacleNumber, col, row);
                         outputNotifView.setText(outputNotif);
 
                         //others
@@ -1876,7 +1906,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // ---------------------------- BLUETOOTH ----------------------------
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -1905,7 +1935,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
+*/
     //@Override
     //public void onClick(View view) {
     //}

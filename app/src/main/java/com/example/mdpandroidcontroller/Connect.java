@@ -32,12 +32,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.mdpandroidcontroller.databinding.ActivityConnectBinding;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-public class Connect extends AppCompatActivity {
+public class Connect extends DrawerBaseActivity {
 
     private static final String TAG = "Connect";
 
@@ -77,11 +79,16 @@ public class Connect extends AppCompatActivity {
         return myBTDevice;
     }
 
+    ActivityConnectBinding activityConnectBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect);
-        getSupportActionBar().hide();
+        activityConnectBinding = activityConnectBinding.inflate(getLayoutInflater());
+
+        setContentView(activityConnectBinding.getRoot());
+        allocateActivityTitle("Bluetooth");
+        //setContentView(R.layout.activity_connect);
+        //getSupportActionBar().hide();
 
         checkBTPermission();
 
