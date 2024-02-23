@@ -454,6 +454,17 @@ public class MainActivity extends DrawerBaseActivity {
         );
         */
 
+        Button start = (Button) findViewById(R.id.Start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Notification
+                //outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                outputNotifView.setText(outputNotif);
+            }
+                                                  }
+        );
 
         //TEXTVIEWS
         outputNotifView = (TextView) findViewById(R.id.notifications);
@@ -1100,7 +1111,7 @@ public class MainActivity extends DrawerBaseActivity {
         };
 
         //OBSTACLES
-        /*
+
         View.OnTouchListener obstacleOnTouchListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -1115,13 +1126,13 @@ public class MainActivity extends DrawerBaseActivity {
                     return false;
                 }
             }
-        };*/
+        };
         initialObstacleGrp.setOnTouchListener(obstacleOnTouchListener);
+
+
+
+        /* finally works - resets all obstacles to the original coordinates*/
 /*
-
-        /**
-         * finally works - resets all obstacles to the original coordinates
-
         Button resetObstacles = (Button) findViewById(R.id.resetObstacles);
         resetObstacles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1129,7 +1140,7 @@ public class MainActivity extends DrawerBaseActivity {
                 reset(obstacleInformationTable, parentView);
             }
         });
-
+*/
         Button sendMapData = (Button) findViewById(R.id.sendMap);
         sendMapData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1154,28 +1165,28 @@ public class MainActivity extends DrawerBaseActivity {
                 }
             }
         });
-        */
-/*
+
+
         //POPUP BUTTONS
         //just sends message to rpi that it's ready
-        Button startRobot = (Button) findViewById(R.id.start_robot);
-        startRobot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //executeInstruction();
-                outputNotif = String.format("BEGINNNN");
-                outputNotifView.setText(outputNotif);
+//        Button startRobot = (Button) findViewById(R.id.start_robot);
+//        startRobot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //executeInstruction();
+//                outputNotif = String.format("BEGINNNN");
+//                outputNotifView.setText(outputNotif);
+//
+//                if (Constants.connected) {
+//                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Start Robot", Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
+//
+//                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
+//                    BluetoothChat.writeMsg(bytes);
+//                }
+//            }
+//        });
 
-                if (Constants.connected) {
-                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Start Robot", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-
-                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
-                    BluetoothChat.writeMsg(bytes);
-                }
-            }
-        });
-*/
 //        ImageButton calculatePath = (ImageButton) findViewById(R.id.calculate);
 //        calculatePath.setOnClickListener(new View.OnClickListener() {
 //            @Override
