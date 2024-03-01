@@ -1,15 +1,10 @@
 package com.example.mdpandroidcontroller;
-
 public class Constants {
-
     private static MySubject subject = null;
-
     public Constants(MySubject subject) {
         this.subject = subject;
     }
-
     public static final String APP_NAME = "GROUP 8";
-
     public static final String BLUETOOTH_ON = "BLUETOOTH ON";
     public static final String BLUETOOTH_OFF = "BLUETOOTH OFF";
     public static final String SECTION_NUMBER = "section_number";
@@ -24,7 +19,6 @@ public class Constants {
     public static final String NOT_AVAILABLE = "NOT AVAILABlE";
     public static final String MDF_ALL_F_STRING = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
     public static final String NONE = "None";
-
     public static final String UP = "Up";
     public static final String DOWN = "Down";
     public static final String LEFT = "Left";
@@ -33,7 +27,6 @@ public class Constants {
     public static final String FLEFT = "FLeft";   //FRONT LEFT
     public static final String BRIGHT = "BRight"; //BACK RIGHT
     public static final String BLEFT = "BLeft";   //BACK LEFT
-
     public static final String NORTH = "N";
     public static final String SOUTH = "S";
     public static final String EAST = "E";
@@ -42,12 +35,9 @@ public class Constants {
     public static final String SOUTHEAST = "SE";
     public static final String SOUTHWEST = "SW";
     public static final String NORTHWEST = "NW";
-
     public static final String ERROR = "ERROR!!!";
-
     public static boolean connected = false;
     public static String instruction = "null";
-
     public static void setConnected (Boolean connection) {
         connected = connection;
         if (connected) {
@@ -56,14 +46,10 @@ public class Constants {
             System.out.println("NOT CONNECTED");
         }
     }
-
     public static void setInstruction (String received) {
         instruction = received;
         System.out.println("AT CONSTANT");
         System.out.println(instruction);
         subject.changeInstruction();
-
     }
-
-
 }

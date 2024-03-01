@@ -362,18 +362,18 @@ public class MainActivity extends DrawerBaseActivity {
         MyObserver observer = new MyObserver(subject);
         Constants constants = new Constants(subject);
 
-        Button faceButton = findViewById(R.id.face_button);
-        faceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //ObstacleDetails obstacle = obstacleInformation.get(obstacleNumber);
-
-
-
-            }
-
-        });
+//        Button faceButton = findViewById(R.id.face_button);
+//        faceButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                //ObstacleDetails obstacle = obstacleInformation.get(obstacleNumber);
+//
+//
+//
+//            }
+//
+//        });
 
         ConstraintLayout initialObstacleGrp = (ConstraintLayout) findViewById(R.id.initialObstacle);
         ImageView initialObstacleBox = (ImageView) findViewById(R.id.initialObstacleBox);
@@ -462,6 +462,16 @@ public class MainActivity extends DrawerBaseActivity {
                 // Notification
                 //outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
                 outputNotifView.setText(outputNotif);
+                outputNotif = String.format("BEGINNNN");
+                outputNotifView.setText(outputNotif);
+
+                if (Constants.connected) {
+                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Start Robot", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+
+                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
+                    BluetoothChat.writeMsg(bytes);
+                }
             }
                                                   }
         );
@@ -1738,7 +1748,10 @@ public class MainActivity extends DrawerBaseActivity {
         prefix = prefix.toUpperCase();
 
         //FOR STATUS
-        if (prefix.equals("STATUS")) {
+        if(prefix.equals("")) {
+            Log.d("blank instruction", formattedInstruction);
+        }
+        else if (prefix.equals("STATUS")) {
             // assuming max 1 comma
             String display = "STATUS: ";
             display = display + instructionList.get(1);
@@ -1752,7 +1765,7 @@ public class MainActivity extends DrawerBaseActivity {
             if (obstacleNumber != 0) {
                 TextView targetTextView = obstacleTextViews.get(obstacleNumber);
                 targetTextView.setText(targetID);
-                targetTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                targetTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 outputNotifView.setText(instruction);
             }
         } else if (prefix.equals("ROBOT")) {
@@ -1778,10 +1791,11 @@ public class MainActivity extends DrawerBaseActivity {
             map.saveFacingWithRotation(rotation);
             trackRobot();
             map.invalidate();
-        } else {
+        }
+        else {
             System.out.println(instruction);
             String errorMsg = "Error: " + instruction;
-            outputNotifView.setText(errorMsg);
+            //outputNotifView.setText(errorMsg);
             System.out.println("DOESNT WORK");
         }
     }
@@ -1822,7 +1836,8 @@ public class MainActivity extends DrawerBaseActivity {
         ImageView newObstacleFace = new ImageView(this);
         newObstacleFace.setId(View.generateViewId()); // Generate a unique ID for the view
         newObstacleFace.setTag(obstacleNumber);
-        newObstacleFace.setImageResource(R.drawable.pink_box);
+       // newObstacleFace.setImageResource(R.drawable.pink_box);
+        newObstacleFace.setImageResource(R.drawable.facing);
         ConstraintLayout.LayoutParams faceParams = new ConstraintLayout.LayoutParams(obstacleLength, obstacleLength);
         newObstacleFace.setLayoutParams(faceParams);
         newObstacleFace.setVisibility(View.INVISIBLE);

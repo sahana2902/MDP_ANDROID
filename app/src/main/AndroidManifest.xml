@@ -48,7 +48,8 @@
             android:exported="false" />
         <activity
             android:name=".DrawerBaseActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true"

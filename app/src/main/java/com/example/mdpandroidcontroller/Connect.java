@@ -41,23 +41,18 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Connect extends DrawerBaseActivity {
-
+    ArrayList<String> newDevices = new ArrayList<>();                       //Store available devices list
+    ArrayList<String> allDevices = new ArrayList<>();
     private static final String TAG = "Connect";
-
     public ArrayList<BluetoothDevice> myBTDevicesArrayList = new ArrayList<>();
     public ArrayList<BluetoothDevice> myBTPairedDevicesArrayList = new ArrayList<>();
-
     public DeviceListAdapter myDeviceListAdapter;
     public DeviceListAdapter myPairedDeviceListAdapter;
-
     BluetoothConnectionService myBluetoothConnection;
-
     //Bounded Device
     static BluetoothDevice myBTDevice;
     BluetoothDevice myBTConnectionDevice;
-
     BluetoothAdapter myBluetoothAdapter;
-
     //VIEWS ANN BUTTONS
     ListView lvNewDevices;
     static ListView lvPairedDevices;
@@ -72,32 +67,19 @@ public class Connect extends DrawerBaseActivity {
     ProgressDialog myProgressDialog, connectionDialog;
     TextView pairedDeviceText;
     Intent connectIntent;
-
     //UUID
     public static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
     public static BluetoothDevice getBluetoothDevice() {
         return myBTDevice;
     }
-
     ActivityConnectBinding activityConnectBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityConnectBinding = activityConnectBinding.inflate(getLayoutInflater());
-
         setContentView(activityConnectBinding.getRoot());
         allocateActivityTitle("Bluetooth");
-        //setContentView(R.layout.activity_connect);
-        //getSupportActionBar().hide();
-
         checkBTPermission();
-
-//        btnW = findViewById(R.id.W);
-//        btnA = findViewById(R.id.A);
-//        btnS = findViewById(R.id.S);
-//        btnD = findViewById(R.id.D);
-
         bluetoothConnect = findViewById(R.id.connectBtn);
         btnSearch = findViewById(R.id.searchBtn);
         lvNewDevices = findViewById(R.id.listNewDevice);
@@ -109,54 +91,59 @@ public class Connect extends DrawerBaseActivity {
         pairedDeviceText = findViewById(R.id.pairedDeviceText);
         incomingMsg = new StringBuilder();
         myBTDevice = null;
-
-
         //REGISTER BROADCAST RECEIVER FOR BTCONNECTIONSTATUS
         LocalBroadcastManager.getInstance(this).registerReceiver(btConnectionReceiver, new IntentFilter("btConnectionStatus"));
-
         //REGISTER BROADCAST RECEIVER FOR IMCOMING MSG
         LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, new IntentFilter("IncomingMsg"));
-
         //REGISTER BROADCAST WHEN BOND STATE CHANGES (E.G PAIRING)
         IntentFilter bondFilter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(bondingBroadcastReceiver, bondFilter);
-
-        //LISTENER FOR BLUETOOTH CONNECTION STATUS UPDATE
-      /*  IntentFilter connectionFilter = new IntentFilter();
-        connectionFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
-        connectionFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
-        connectionFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        registerReceiver(btConnectionReceiver, connectionFilter);*/
-
         //REGISTER DISCOVERABILITY BROADCAST RECEIVER
         IntentFilter intentFilter = new IntentFilter(myBluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
         registerReceiver(discoverabilityBroadcastReceiver, intentFilter);
-
         //REGISTER ENABLE/DISABLE BT BROADCAST RECEIVER
         IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(enableBTBroadcastReceiver, BTIntent);
-
         //REGISTER DISCOVERED DEVICE BROADCAST RECEIVER
         IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(discoveryBroadcastReceiver, discoverDevicesIntent);
-
         //REGISTER START DISCOVERING BROADCAST RECEIVER
         IntentFilter discoverStartedIntent = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         registerReceiver(discoveryStartedBroadcastReceiver, discoverStartedIntent);
-
         //REGISTER END DISCOVERING BROADCAST RECEIVER
         IntentFilter discoverEndedIntent = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(discoveryEndedBroadcastReceiver, discoverEndedIntent);
-
         myBTDevicesArrayList = new ArrayList<>();
         myBTPairedDevicesArrayList = new ArrayList<>();
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-
-
-
         //ONCLICK LISTENER FOR PAIRED DEVICE LIST//paired
         lvPairedDevices.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        //CANCEL DEVICE SEARCH DISCOVERY
+                        if (ActivityCompat.checkSelfPermission(Connect.this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                        }
+                        myBluetoothAdapter.cancelDiscovery();
+                        myBTDevice = myBTPairedDevicesArrayList.get(i);
+                        //UnSelect Search Device List
+                        lvNewDevices.setAdapter(myDeviceListAdapter);
+                        Log.d(TAG, "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName());
+                        Toast.makeText(getApplicationContext(), "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName(), Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress());
+                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress(), Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        //ONCLICK LISTENER FOR SEARCH DEVICE LIST
+        lvNewDevices.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -172,88 +159,40 @@ public class Connect extends DrawerBaseActivity {
                             // for ActivityCompat#requestPermissions for more details.
                         }
                         myBluetoothAdapter.cancelDiscovery();
-
-                        myBTDevice = myBTPairedDevicesArrayList.get(i);
-
-                        //UnSelect Search Device List
-                        lvNewDevices.setAdapter(myDeviceListAdapter);
-
-                        Log.d(TAG, "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName());
-                        Toast.makeText(getApplicationContext(), "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName(), Toast.LENGTH_LONG).show();
-                        Log.d(TAG, "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress());
-                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress(), Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "onItemClick: Device Selected");
+                        Toast.makeText(getApplicationContext(), "onItemClick: Device Selected", Toast.LENGTH_LONG).show();
+                        String deviceName = myBTDevicesArrayList.get(i).getName();
+                        String deviceAddress = myBTDevicesArrayList.get(i).getAddress();
+                        //UnSelect Paired Device List
+                        lvPairedDevices.setAdapter(myPairedDeviceListAdapter);
+                        Log.d(TAG, "onItemClick: DeviceName = " + deviceName);
+                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceName = " + deviceName, Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "onItemClick: DeviceAddress = " + deviceAddress);
+                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + deviceAddress, Toast.LENGTH_LONG).show();
+                        //CREATE BOND if > JELLY BEAN
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                            Log.d(TAG, "Trying to pair with: " + deviceName);
+                            //CREATE BOUND WITH SELECTED DEVICE
+                            myBTDevicesArrayList.get(i).createBond();
+                            //ASSIGN SELECTED DEVICE INFO TO myBTDevice
+                            myBTDevice = myBTDevicesArrayList.get(i);
+                        }
 
                     }
                 }
         );
-
-        //ONCLICK LISTENER FOR SEARCH DEVICE LIST
-//        lvNewDevices.setOnItemClickListener(
-//                new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                        //CANCEL DEVICE SEARCH DISCOVERY
-//                        if (ActivityCompat.checkSelfPermission(Connect.this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-//                            // TODO: Consider calling
-//                            //    ActivityCompat#requestPermissions
-//                            // here to request the missing permissions, and then overriding
-//                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                            //                                          int[] grantResults)
-//                            // to handle the case where the user grants the permission. See the documentation
-//                            // for ActivityCompat#requestPermissions for more details.
-//                        }
-//                        myBluetoothAdapter.cancelDiscovery();
-//
-//                        Log.d(TAG, "onItemClick: Device Selected");
-//                        Toast.makeText(getApplicationContext(), "onItemClick: Device Selected", Toast.LENGTH_LONG).show();
-//                        String deviceName = myBTDevicesArrayList.get(i).getName();
-//                        String deviceAddress = myBTDevicesArrayList.get(i).getAddress();
-//
-//                        //UnSelect Paired Device List
-//                        lvPairedDevices.setAdapter(myPairedDeviceListAdapter);
-//
-//
-//                        Log.d(TAG, "onItemClick: DeviceName = " + deviceName);
-//                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceName = " + deviceName, Toast.LENGTH_LONG).show();
-//                        Log.d(TAG, "onItemClick: DeviceAddress = " + deviceAddress);
-//                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + deviceAddress, Toast.LENGTH_LONG).show();
-//
-//                        //CREATE BOND if > JELLY BEAN
-//                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
-//                            Log.d(TAG, "Trying to pair with: " + deviceName);
-//
-//                            //CREATE BOUND WITH SELECTED DEVICE
-//                            myBTDevicesArrayList.get(i).createBond();
-//
-//                            //ASSIGN SELECTED DEVICE INFO TO myBTDevice
-//                            myBTDevice = myBTDevicesArrayList.get(i);
-//
-//
-//                        }
-//
-//                    }
-//                }
-//        );
-
         //ONCLICKLISTENER FOR SEARCH BUTTON
         btnSearch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: search button");
-                Toast.makeText(getApplicationContext(), "onClick: search button", Toast.LENGTH_LONG).show();
                 enableBT();
                 myBTDevicesArrayList.clear();
-
-
             }
         });
-
         //ONCLICKLISTENER FOR CONNECT BUTTON
         bluetoothConnect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
                 if (myBTDevice == null) {
-
                     if (ActivityCompat.checkSelfPermission(Connect.this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
@@ -263,7 +202,6 @@ public class Connect extends DrawerBaseActivity {
                         // to handle the case where the user grants the permission. See the documentation
                         // for ActivityCompat#requestPermissions for more details.
                     }
-
                     Toast.makeText(Connect.this, "No Paired Device! Please Search/Select a Device.",
                             Toast.LENGTH_LONG).show();
                 } else if (myBluetoothAdapter.getProfileConnectionState(BluetoothHeadset.HEADSET) == BluetoothAdapter.STATE_CONNECTED) {
@@ -273,20 +211,11 @@ public class Connect extends DrawerBaseActivity {
                     Log.d(TAG, "onClick: connect button");
                     Toast.makeText(Connect.this, "onClick: connect button",
                             Toast.LENGTH_LONG).show();
-
-                    //CREATE BOUND WITH SELECTED DEVICE
-                /*    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        Log.d(TAG, "Rebond");
-                        myBTDevice.createBond();
-                    }*/
-
                     //START CONNECTION WITH THE BOUNDED DEVICE
-
                     Intent intent1 = new Intent();
                     intent1.setAction("com.example.mdpandroidcontroller.btConnectionStatus");
                     intent1.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
                     sendBroadcast(intent1);
-
                     startBTConnection(myBTDevice, myUUID);
                 }
                 lvPairedDevices.setAdapter(myPairedDeviceListAdapter);
@@ -303,8 +232,6 @@ public class Connect extends DrawerBaseActivity {
         });
 
         ImageButton forwardButton = (ImageButton) findViewById(R.id.BarrowForward);
-        ImageButton rightButton = (ImageButton) findViewById(R.id.BarrowRight);
-        ImageButton leftButton = (ImageButton) findViewById(R.id.BarrowLeft);
         ImageButton backButton = (ImageButton) findViewById(R.id.BarrowBack);
         ImageButton nEButton = (ImageButton) findViewById(R.id.BarrowNE);
         ImageButton sEButton = (ImageButton) findViewById(R.id.BarrowSE);
@@ -317,27 +244,27 @@ public class Connect extends DrawerBaseActivity {
                 //byte[] bytes = "f".getBytes(Charset.defaultCharset());
                 String text = "_";
                 switch (view.getId()) {
-                    case R.id.BarrowForward:
-                        text = "w";
+                    case R.id.BarrowForward: //w
+                        text = "FW050000";
                         //Toast.makeText(getApplicationContext(), "w", Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.BarrowBack:
-                        text = "s";
+                    case R.id.BarrowBack: //s
+                        text = "BW050090";
                         break;
-                    case R.id.BarrowLeft:
-                        text="q";
+                    case R.id.BarrowNW: //q
+                        text = "FL000090";
                         break;
-                    case R.id.BarrowRight:
-                        text="e";
+                    case R.id.BarrowNE: //e
+                        text = "FR000090";
                         break;
-                    case R.id.BarrowSW:
-                        text="a";
+                    case R.id.BarrowSW: //a
+                        text = "BL050090";
                         break;
-                    case R.id.BarrowSE:
-                        text="d";
+                    case R.id.BarrowSE: //d
+                        text = "BR050090";
                         break;
-                    case R.id.reset:
-                        text="m";
+                    case R.id.reset: //m
+                        text = "RE000000";
                         break;
 
                 }
@@ -347,77 +274,15 @@ public class Connect extends DrawerBaseActivity {
         };
 
         forwardButton.setOnClickListener(movementOnClickListener);
-
-        rightButton.setOnClickListener(movementOnClickListener);
-
-
-        leftButton.setOnClickListener(movementOnClickListener);
-
-
         backButton.setOnClickListener(movementOnClickListener);
-
-
         nEButton.setOnClickListener(movementOnClickListener);
-
-
         sEButton.setOnClickListener(movementOnClickListener);
-
-
         sWButton.setOnClickListener(movementOnClickListener);
-
-
         nWButton.setOnClickListener(movementOnClickListener);
-
-//        btnW.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                        Log.d(TAG, "checking WASD");
-//                        String W = "w";
-//                        byte[] bytes_W = W.getBytes(Charset.defaultCharset());
-//                        BluetoothChat.writeMsg(bytes_W);
-//            }
-//
-//        });
-//
-//        btnA.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "checking WASD");
-//                String A = "a";
-//                byte[] bytes_A = A.getBytes(Charset.defaultCharset());
-//                BluetoothChat.writeMsg(bytes_A);
-//            }
-//
-//        });
-//
-//        btnS.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "checking WASD");
-//                String S = "s";
-//                byte[] bytes_S = S.getBytes(Charset.defaultCharset());
-//                BluetoothChat.writeMsg(bytes_S);
-//            }
-//
-//        });
-//
-//        btnD.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "checking WASD");
-//                String D = "d";
-//                byte[] bytes_D = D.getBytes(Charset.defaultCharset());
-//                BluetoothChat.writeMsg(bytes_D);
-//            }
-//
-//        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.connect, menu);
-        return true;
-    }
+    public boolean onCreateOptionsMenu(Menu menu) {return true;}
 
     /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -476,6 +341,7 @@ public class Connect extends DrawerBaseActivity {
                     stopService(connectIntent);
                 }
 
+
                 //RECONNECT DIALOG MSG
                 AlertDialog alertDialog = new AlertDialog.Builder(Connect.this).create();
                 alertDialog.setTitle("BLUETOOTH DISCONNECTED");
@@ -504,6 +370,8 @@ public class Connect extends DrawerBaseActivity {
                             }
                         });
                 alertDialog.show();
+
+
             }
 
             //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
@@ -670,7 +538,6 @@ public class Connect extends DrawerBaseActivity {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             Log.d(TAG, "SEARCH ME!");
-
             if (action.equals(BluetoothDevice.ACTION_FOUND)) {
 
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -684,10 +551,11 @@ public class Connect extends DrawerBaseActivity {
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
                 }
+                Log.d(TAG, "device name: " + device.getName() + ": " + device.getAddress());
+
                 Log.d(TAG, "OnReceive: " + device.getName() + ": " + device.getAddress());
                 myDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, myBTDevicesArrayList);
-                //lvNewDevices.setAdapter(myDeviceListAdapter);
-
+                lvNewDevices.setAdapter(myDeviceListAdapter);
             }
         }
     };
@@ -726,6 +594,22 @@ public class Connect extends DrawerBaseActivity {
                 //deviceSearchStatus.setText(R.string.searchDone);
 
             }
+//            for (BluetoothDevice device : myBTDevicesArrayList) {
+//                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+//                    // TODO: Consider calling
+//                    //    ActivityCompat#requestPermissions
+//                    // here to request the missing permissions, and then overriding
+//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                    //                                          int[] grantResults)
+//                    // to handle the case where the user grants the permission. See the documentation
+//                    // for ActivityCompat#requestPermissions for more details.
+//                    return;
+//                }
+//                if (device == null){
+//                    myBTDevicesArrayList.remove(device);
+//                }
+//            }
+
         }
     };
 

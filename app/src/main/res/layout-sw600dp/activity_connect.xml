@@ -8,7 +8,7 @@
 
     <ListView
         android:id="@+id/listNewDevice"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="130dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/pairedDeviceText"
@@ -23,10 +23,11 @@
 
     <TextView
         android:id="@+id/deviceSearchStatus"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="26dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="monospace"
         android:text="Bluetooth Devices:"
         android:textColor="#292929"
@@ -40,7 +41,7 @@
 
     <TextView
         android:id="@+id/deviceOutputMsg"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="25dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="monospace"
@@ -53,54 +54,23 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <Button
-        android:id="@+id/connectBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/red"
-        android:fontFamily="monospace"
-        android:text="Connect"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+    <!--    <Button-->
+<!--        android:id="@+id/connectCancel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:backgroundTint="@color/red"-->
+<!--        android:fontFamily="monospace"-->
+<!--        android:text="Cancel"-->
+<!--        android:textSize="18dp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.966"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.963" />-->
 
-    <Button
-        android:id="@+id/connectCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/red"
-        android:fontFamily="monospace"
-        android:text="Cancel"
-        android:textSize="18dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.963" />
-
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
-        android:backgroundTint="@color/red"
-        android:fontFamily="monospace"
-        android:text="Search Devices"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/W"-->
 <!--        android:layout_width="50dp"-->
 <!--        android:layout_height="70dp"-->
@@ -160,22 +130,53 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.038" />-->
 
+
+    <Button
+        android:id="@+id/connectBtn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="332dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
+        android:text="Connect"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btSend1"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="536dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="60dp"
         android:text="Send"
-        android:textSize="18dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.919"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="268dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
+        android:text="Search"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btSend"
@@ -194,261 +195,265 @@
         android:src="@android:drawable/ic_menu_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/messageText" />
+
+
     <TableLayout
         android:id="@+id/B_pad"
-        android:layout_width="215dp"
+        android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="100dp"
+
+        android:layout_marginRight="-15dp"
         android:background="@drawable/border_4"
         android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.769"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148"
-
+        app:layout_constraintVertical_bias="0.018"
 
 
         >
-    <TableRow
-        android:id="@+id/Bpad_row1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/BarrowNW"
-            android:layout_width="65dp"
+        <TableRow
+            android:id="@+id/Bpad_row1"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="220"
-            android:scaleType="fitCenter"
+            android:gravity="center">
 
-            android:src="@drawable/baseline_play_arrow_24"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="367dp"
-            tools:layout_editor_absoluteY="808dp" />
+            <ImageButton
+                android:id="@+id/BarrowNW"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="220"
+                android:scaleType="fitCenter"
 
-        <ImageButton
-            android:id="@+id/BarrowForward"
-            android:layout_width="65dp"
+                android:src="@drawable/baseline_play_arrow_24"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="367dp"
+                tools:layout_editor_absoluteY="808dp" />
+
+            <ImageButton
+                android:id="@+id/BarrowForward"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="-90"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_play_arrow_24"
+                tools:layout_editor_absoluteX="415dp"
+                tools:layout_editor_absoluteY="808dp" />
+
+            <ImageButton
+                android:id="@+id/BarrowNE"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="70"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_play_arrow_24"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="463dp"
+                tools:layout_editor_absoluteY="808dp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/dpad_row2"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="-90"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            tools:layout_editor_absoluteX="415dp"
-            tools:layout_editor_absoluteY="808dp" />
+            android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/BarrowNE"
-            android:layout_width="65dp"
+            <!--            <ImageButton-->
+            <!--                android:id="@+id/BarrowLeft"-->
+            <!--                android:layout_width="65dp"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:adjustViewBounds="true"-->
+            <!--                android:background="@null"-->
+            <!--                android:clickable="true"-->
+            <!--                android:focusable="true"-->
+            <!--                android:maxWidth="50dp"-->
+            <!--                android:maxHeight="50dp"-->
+            <!--                android:rotation="-55"-->
+            <!--                android:scaleType="fitCenter"-->
+            <!--                android:src="@drawable/baseline_play_arrow_24"-->
+            <!--                tools:layout_editor_absoluteX="367dp"-->
+            <!--                tools:layout_editor_absoluteY="856dp" />-->
+
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:src="#E40F0F"
+                android:text="reset"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="9dp"
+                app:fontFamily="monospace" />
+
+
+            <!--            <ImageButton-->
+            <!--                android:id="@+id/BarrowRight"-->
+            <!--                android:layout_width="65dp"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:adjustViewBounds="true"-->
+            <!--                android:background="@android:color/transparent"-->
+            <!--                android:clickable="true"-->
+            <!--                android:focusable="true"-->
+            <!--                android:maxWidth="50dp"-->
+            <!--                android:maxHeight="50dp"-->
+            <!--                android:scaleType="fitCenter"-->
+            <!--                android:src="@drawable/baseline_play_arrow_24"-->
+            <!--                tools:layout_editor_absoluteX="463dp"-->
+            <!--                tools:layout_editor_absoluteY="856dp" />-->
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Bpad_row3"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="70"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="463dp"
-            tools:layout_editor_absoluteY="808dp" />
-    </TableRow>
+            android:gravity="center">
 
-    <TableRow
-        android:id="@+id/dpad_row2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <ImageButton
+                android:id="@+id/BarrowSW"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="245"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_play_arrow_24"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="367dp"
+                tools:layout_editor_absoluteY="904dp" />
 
-        <ImageButton
-            android:id="@+id/BarrowLeft"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="-55"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            tools:layout_editor_absoluteX="367dp"
-            tools:layout_editor_absoluteY="856dp" />
+            <ImageButton
+                android:id="@+id/BarrowBack"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="90"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_play_arrow_24"
+                tools:layout_editor_absoluteX="415dp"
+                tools:layout_editor_absoluteY="904dp" />
 
-        <Button
-            android:id="@+id/reset"
-            android:text="reset"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textSize="9dp"
-            app:fontFamily="monospace"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:src="#E40F0F"
-            />
+            <ImageButton
+                android:id="@+id/BarrowSE"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:rotation="-75"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_play_arrow_24"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="463dp"
+                tools:layout_editor_absoluteY="904dp" />
+        </TableRow>
 
-
-
-        <ImageButton
-            android:id="@+id/BarrowRight"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:scaleType="fitCenter"
-            tools:layout_editor_absoluteX="463dp"
-            tools:layout_editor_absoluteY="856dp"
-            android:src="@drawable/baseline_play_arrow_24"/>
-
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Bpad_row3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/BarrowSW"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="245"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="367dp"
-            tools:layout_editor_absoluteY="904dp" />
-
-        <ImageButton
-            android:id="@+id/BarrowBack"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="90"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            tools:layout_editor_absoluteX="415dp"
-            tools:layout_editor_absoluteY="904dp" />
-
-        <ImageButton
-            android:id="@+id/BarrowSE"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:rotation="-75"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_play_arrow_24"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="463dp"
-            tools:layout_editor_absoluteY="904dp" />
-    </TableRow>
-
-</TableLayout>
-
-
-    <EditText
-        android:id="@+id/messageText"
-        android:layout_width="371dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="108dp"
-        android:background="@color/white"
-        android:hint="Enter Message"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent" />
+    </TableLayout>
 
     <ListView
         android:id="@+id/pairedDeviceList"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="130dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:background="@color/white"
-        android:listSelector="#bcbcbc"
 
+        android:listSelector="#bcbcbc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pairedDeviceText"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintTop_toBottomOf="@id/pairedDeviceText" />
 
     <TextView
         android:id="@+id/pairedDeviceText"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="24dp"
         android:layout_marginBottom="192dp"
         android:fontFamily="monospace"
-        android:text="Bluetooth Devices:"
+        android:text="Paired Devices:"
         android:textColor="#292929"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/pairedDeviceList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/incomingText"
-        android:layout_width="371dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="64dp"
-        android:background="@color/white"
-        android:text="Incoming Message"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.165"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pairedDeviceList" />
-
-    <TextView
         android:id="@+id/textView"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="24dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="monospace"
         android:text="Send Message:"
         android:textColor="#292929"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/messageText"
         app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/messageText"
+        android:layout_width="350dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="108dp"
+        android:background="@color/white"
+        android:hint="Enter Message"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+      android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pairedDeviceList"
+
+        />
+    <TextView
+        android:id="@+id/incomingText"
+        android:layout_width="350dp"
+        android:layout_height="130dp"
+        android:background="@color/white"
+        android:text="Incoming Message"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageText"
+        app:layout_constraintHorizontal_bias="0.157"
+         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

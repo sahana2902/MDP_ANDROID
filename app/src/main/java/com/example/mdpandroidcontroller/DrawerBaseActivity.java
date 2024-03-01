@@ -53,10 +53,10 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 startActivity(new Intent(this, MainActivity.class));
                 overridePendingTransition(0,0);
                 break;
-            case R.id.nav_buttons:
-                startActivity(new Intent(this, TempButtonsActivity.class));
-                overridePendingTransition(0,0);
-                break;
+//            case R.id.nav_buttons:
+//                startActivity(new Intent(this, TempButtonsActivity.class));
+//                overridePendingTransition(0,0);
+//                break;
         }
         return false;
     }

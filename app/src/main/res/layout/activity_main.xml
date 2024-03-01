@@ -181,19 +181,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/face_button"
-            android:layout_width="20dp"
-            android:layout_height="50dp"
-            android:background="@drawable/border"
-            android:text="Set Face"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="12dp"
-            app:fontFamily="monospace"
-            android:layout_marginLeft="50dp"
-            app:layout_constraintTop_toBottomOf="@id/mapView"
-            app:layout_constraintLeft_toRightOf="@id/obstacleInformation"/>
+<!--        <Button-->
+<!--            android:id="@+id/face_button"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:text="Set Face"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="12dp"-->
+<!--            app:fontFamily="monospace"-->
+<!--            android:layout_marginLeft="50dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/mapView"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/obstacleInformation"/>-->
 <!--        <Switch-->
 <!--            android:id="@+id/reverse_switch"-->
 <!--            android:layout_width="wrap_content"-->
@@ -204,10 +204,10 @@
 
         <Button
             android:id="@+id/sendMap"
-            android:layout_width="124dp"
+            android:layout_width="215dp"
             android:layout_height="45dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="268dp"
+            android:layout_marginEnd="32dp"
             android:backgroundTint="#FF0000"
             android:drawableLeft="@android:drawable/ic_menu_send"
             android:drawableTint="@color/white"
@@ -853,13 +853,13 @@
         <TableLayout
             android:id="@+id/d_pad"
             android:layout_width="215dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="100dp"
+            android:layout_height="150dp"
+
             android:background="@drawable/border_4"
             android:gravity="center_vertical"
             app:layout_constraintLeft_toLeftOf="@id/obstacle_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mapView"
+            app:layout_constraintTop_toBottomOf="@id/sendMap"
 
 
            >
