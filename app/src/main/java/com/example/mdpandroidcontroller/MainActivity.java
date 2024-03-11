@@ -1,5 +1,6 @@
 package com.example.mdpandroidcontroller;
 
+
 import static com.example.mdpandroidcontroller.MapArena.obstacleInformation;
 import static java.lang.Integer.parseInt;
 
@@ -389,8 +390,7 @@ public class MainActivity extends DrawerBaseActivity {
         obstacleFaceViews2.put(1, initialObstacleFace);
         obstacleTextViews.put(1, initialObstacleId);
         //comment out later
-        ViewGroup parentView = (ViewGroup) map.getParent();
-        /*
+
         Button preloadObstaclesButton = (Button) findViewById(R.id.preloadObstaclesButton);
         Spinner spinner = findViewById(R.id.numberOfPreloadedObstacles);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -404,14 +404,1097 @@ public class MainActivity extends DrawerBaseActivity {
         preloadObstaclesButton.setOnClickListener(new View.OnClickListener() {
                                                       @Override
                                                       public void onClick(View view) {
+                                                          reset(obstacleInformationTable, parentView);
                                                           String userInput = spinner.getSelectedItem().toString();
-                                                          int numberOfObstacles = 0;
-                                                          try {
-                                                              numberOfObstacles = Integer.parseInt(userInput);}
-                                                          catch (NumberFormatException e) {
-                                                              numberOfObstacles = 0;
+//                                                          int numberOfObstacles = 0;
+//                                                          try {
+//                                                              numberOfObstacles = Integer.parseInt(userInput);
+//                                                          } catch (NumberFormatException e) {
+//                                                              numberOfObstacles = 0;
+//                                                          }
+                                                          //<item>2021 s2 run 1</item>
+                                                          //        <item>2021 s2 run 2</item> userInput.equals("2021 s2 run 2")
+                                                          //        <item>2022 s1 run 1</item> userInput.equals("2022 s1 run 1")
+                                                          //        <item>2023 s1 run 1</item> userInput.equals("2023 s1 run 1")
+                                                          //        <item>testing 1</item> userInput.equals("testing 1")
+                                                          //        <item>testing 2</item> userInput.equals("testing 2")
+                                                          //        <item>testing 3</item> userInput.equals("testing 3")
+                                                          //        <item>testing 4</item> userInput.equals("testing 4")
+                                                          //        <item>thurs testing 1</item> userInput.equals("thurs testing 1")
+                                                          //        <item>thurs testing 2</item> userInput.equals("thurs testing 2")
+
+                                                          if (userInput.equals("2021 s2 run 1")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(1, 18);
+                                                              coord.put(6, 12);
+                                                              coord.put(14, 16);
+                                                              coord.put(10, 6);
+                                                              coord.put(13, 2);
+                                                              coord.put(18, 9);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              faces.add("W");
+                                                              faces.add("E");
+                                                              faces.add("E");
+                                                              faces.add("W");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  //setting face
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+
                                                           }
-                                                          int mapCellSize = (int) map.getCellSize();
+                                                          else if (userInput.equals("2021 s2 run 2")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(11, 4);
+                                                              coord.put(6, 10);
+                                                              coord.put(1, 16);
+                                                              coord.put(13, 14);
+                                                              //coord.put(18, 3);
+                                                              coord.put(18, 16);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("E");
+                                                              faces.add("N");
+                                                              faces.add("E");
+                                                              faces.add("S");
+                                                              faces.add("W");
+
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  //setting face
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+
+                                                          }
+                                                          else if (userInput.equals("2022 s1 run 1")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(2, 12);
+                                                              coord.put(10, 6);
+                                                              coord.put(11, 18);
+                                                              coord.put(19, 15);
+                                                              coord.put(15, 9);
+                                                              coord.put(18, 2);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("N");
+                                                              faces.add("E");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("N");
+                                                              faces.add("W");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("2023 s1 run 1")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(1, 16);
+                                                              coord.put(5, 12);
+                                                              coord.put(8, 5);
+                                                              coord.put(11, 14);
+                                                              coord.put(15, 2);
+                                                              coord.put(16, 19);
+                                                              coord.put(19, 9);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("E");
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              faces.add("E");
+                                                              faces.add("W");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("testing 1")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(5, 15);
+                                                              coord.put(3, 8);
+                                                              coord.put(12, 3);
+                                                              coord.put(9, 11);
+                                                              coord.put(15, 9);
+                                                              coord.put(7, 8);
+                                                              coord.put(18, 18);
+                                                              coord.put(2,8);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("E");
+                                                              faces.add("S");
+                                                              faces.add("E");
+                                                              faces.add("W");
+                                                              faces.add("N");
+                                                              faces.add("N");
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("testing 2")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(1, 7);
+                                                              coord.put(1, 15);
+                                                              coord.put(8, 4);
+                                                              coord.put(10, 13);
+                                                              coord.put(11, 13);
+                                                              coord.put(12, 2);
+                                                              coord.put(12, 4);
+                                                              coord.put(16,3);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("S");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("W");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("N");
+                                                              faces.add("N");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("testing 3")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(2, 12);
+                                                              coord.put(6, 10);
+                                                              coord.put(15, 9);
+                                                              coord.put(18, 2);
+                                                              coord.put(19, 15);
+                                                              coord.put(11, 18);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("N");
+                                                              faces.add("E");
+                                                              faces.add("N");
+                                                              faces.add("W");
+                                                              faces.add("W");
+                                                              faces.add("S");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("testing 4")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(10, 6);
+                                                              coord.put(6, 12);
+                                                              coord.put(11, 18);
+                                                              coord.put(15, 9);
+                                                              coord.put(17, 2);
+                                                              coord.put(15, 16);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("N");
+                                                              faces.add("S");
+                                                              faces.add("S");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("W");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("thurs testing 1")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(10, 18);
+                                                              coord.put(5, 1);
+                                                              coord.put(5, 9);
+                                                              coord.put(9, 5);
+                                                              coord.put(16, 1);
+                                                              coord.put(18, 19);
+                                                              coord.put(11, 14);
+                                                              coord.put(19,9);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("S");
+                                                              faces.add("E");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("W");
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              faces.add("W");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+                                                          else if (userInput.equals("thurs testing 2")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.put(2, 11);
+                                                              coord.put(2, 12);
+                                                              coord.put(6, 10);
+                                                              coord.put(8, 0);
+                                                              coord.put(15, 9);
+                                                              coord.put(18, 2);
+                                                              coord.put(19, 15);
+                                                              coord.put(11,18);
+                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              faces.add("E");
+                                                              faces.add("N");
+                                                              faces.add("S");
+                                                              faces.add("N");
+                                                              faces.add("W");
+                                                              faces.add("S");
+                                                              int i =0;
+                                                              int newObstacleNumber = 1;
+                                                              for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+                                                                  newObstacleNumber = obstacleViews.size() + 1;
+                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+                                                                      newObstacleNumber++;
+                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((set.getKey() + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - set.getValue()) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{set.getKey(), set.getValue()});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{set.getKey(), set.getValue()});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  i++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+
+
+                    /*if (Constants.connected) {
+                                                          }
+
+
+ {                                                         int mapCellSize = (int) map.getCellSize();
                                                           int xMapCoordinate = 19;
                                                           int yMapCoordinate = 1;
                                                           for (int j = 0; j < numberOfObstacles; j++) {
@@ -434,46 +1517,46 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int xCoordinate = ((xMapCoordinate + 1) * mapCellSize) + (int) map.getX();
                                                               int yCoordinate = ((19 - yMapCoordinate) * mapCellSize) + (int) map.getY();
                                                               map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
-                                                              latestObstacleCoordinates.put(newObstacleNumber, new int[] {xCoordinate, yCoordinate});
+                                                              latestObstacleCoordinates.put(newObstacleNumber, new int[]{xCoordinate, yCoordinate});
                                                               newObstacle.setX(xCoordinate);
                                                               newObstacle.setY(yCoordinate);
                                                               map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
                                                               map.invalidate();
                                                               // Notification
-                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotif = String.format("Obstacle: %d, Col: %d, Row: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
                                                               outputNotifView.setText(outputNotif);
                     /*if (Constants.connected) {
                         byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
                         BluetoothChat.writeMsg(bytes);
-                    }
-                                                              yMapCoordinate += 2;
-                                                              // Check that popup still opens (if branch)
-                                                          }
+                    }*/
+                                                          // yMapCoordinate += 2;
+                                                          // Check that popup still opens (if branch)
+                                                          // }
                                                       }
                                                   }
         );
-        */
+
 
         Button start = (Button) findViewById(R.id.Start);
         start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                                     @Override
+                                     public void onClick(View view) {
 
-                // Notification
-                //outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
-                outputNotifView.setText(outputNotif);
-                outputNotif = String.format("BEGINNNN");
-                outputNotifView.setText(outputNotif);
+                                         // Notification
+                                         //outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                         outputNotifView.setText(outputNotif);
+                                         outputNotif = String.format("BEGINNNN");
+                                         outputNotifView.setText(outputNotif);
 
-                if (Constants.connected) {
-                    Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Start Robot", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                                         if (Constants.connected) {
+                                             Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "Start Robot", Snackbar.LENGTH_SHORT);
+                                             snackbar.show();
 
-                    byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
-                    BluetoothChat.writeMsg(bytes);
-                }
-            }
-                                                  }
+                                             byte[] bytes = outputNotif.getBytes(Charset.defaultCharset());
+                                             BluetoothChat.writeMsg(bytes);
+                                         }
+                                     }
+                                 }
         );
 
         //TEXTVIEWS
@@ -528,6 +1611,25 @@ public class MainActivity extends DrawerBaseActivity {
         } else {
             robot.setVisibility(View.INVISIBLE);
         }
+        findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent intent = new Intent(getContext(), SecondFragment.class);
+                BluetoothServices bluetoothServices = new BluetoothServices();
+                intent.putExtra("bluetooth_services", bluetoothServices);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(MainActivity.this, Connect.class);
+                startActivity(intent);
+            }
+        });
+//        findViewById(R.id.discoverableBtn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bluetooth_discoverable();
+//            }
+//        });
+
 
 /*
         findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
@@ -1836,7 +2938,7 @@ public class MainActivity extends DrawerBaseActivity {
         ImageView newObstacleFace = new ImageView(this);
         newObstacleFace.setId(View.generateViewId()); // Generate a unique ID for the view
         newObstacleFace.setTag(obstacleNumber);
-       // newObstacleFace.setImageResource(R.drawable.pink_box);
+        // newObstacleFace.setImageResource(R.drawable.pink_box);
         newObstacleFace.setImageResource(R.drawable.facing);
         ConstraintLayout.LayoutParams faceParams = new ConstraintLayout.LayoutParams(obstacleLength, obstacleLength);
         newObstacleFace.setLayoutParams(faceParams);
@@ -1932,28 +3034,28 @@ public class MainActivity extends DrawerBaseActivity {
 
 
     // ---------------------------- BLUETOOTH ----------------------------
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -1961,7 +3063,7 @@ public class MainActivity extends DrawerBaseActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-*/
+
     //@Override
     //public void onClick(View view) {
     //}
@@ -2101,6 +3203,16 @@ public class MainActivity extends DrawerBaseActivity {
                 connectedState = false;
 
                 if (currentActivity) {
+                    if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
 
                     //RECONNECT DIALOG MSG
                     AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -2129,7 +3241,6 @@ public class MainActivity extends DrawerBaseActivity {
                             alertDialog.cancel();
                         }
                     }, 1000);
-
 
 
                 }

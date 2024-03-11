@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -592,7 +593,12 @@ public class MapArena extends View { //implements Serializable
      */
     public int[] setRobotImagePosition(int column, int row, float left, float top) {
 
-        int[] newRobotLocation= {(int) ((column) * cellSize + left), (int) ((row - 2) * cellSize + top)};
+        int[] newRobotLocation= {(int) ((column) * cellSize +left), (int) ((row - 2) * cellSize + top)};
+        Log.d("column", Integer.toString(column));
+        Log.d("row", Integer.toString(row));
+        Log.d("cellsize", Float.toString(cellSize));
+        Log.d("left", Float.toString(left));
+        Log.d("top", Float.toString(top));
 
         return newRobotLocation;
     }

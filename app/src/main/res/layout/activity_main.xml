@@ -43,108 +43,108 @@
         <ImageView
             android:id="@+id/obstacle_background"
             android:layout_width="120dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:src="@drawable/border"
             app:layout_constraintBottom_toTopOf="@+id/generator"
             app:layout_constraintStart_toStartOf="@+id/generator" />
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/calculate"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:background="@null"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:maxWidth="40dp"-->
-<!--            android:maxHeight="50dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            android:src="@drawable/path_button"-->
-<!--            android:visibility="gone"-->
-<!--            tools:layout_editor_absoluteX="57dp"-->
-<!--            tools:layout_editor_absoluteY="853dp" />-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/calculate"-->
+        <!--            android:layout_width="100dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="@null"-->
+        <!--            android:clickable="true"-->
+        <!--            android:focusable="true"-->
+        <!--            android:maxWidth="40dp"-->
+        <!--            android:maxHeight="50dp"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:src="@drawable/path_button"-->
+        <!--            android:visibility="gone"-->
+        <!--            tools:layout_editor_absoluteX="57dp"-->
+        <!--            tools:layout_editor_absoluteY="853dp" />-->
 
         <!--        <Button-->
-<!--            android:id="@+id/resetObstacles"-->
-<!--            android:layout_width="124dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:background="@null"-->
-<!--            android:backgroundTint="#E80F0F"-->
-<!--            android:clickable="true"-->
-<!--            android:drawableLeft="@android:drawable/ic_popup_sync"-->
-<!--            android:drawableTint="@color/white"-->
-<!--            android:focusable="true"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:maxWidth="40dp"-->
-<!--            android:maxHeight="40dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            android:text="RESET"-->
-<!--            android:textSize="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/preloadObstaclesButton" />-->
+        <!--            android:id="@+id/resetObstacles"-->
+        <!--            android:layout_width="124dp"-->
+        <!--            android:layout_height="45dp"-->
+        <!--            android:layout_marginEnd="32dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="@null"-->
+        <!--            android:backgroundTint="#E80F0F"-->
+        <!--            android:clickable="true"-->
+        <!--            android:drawableLeft="@android:drawable/ic_popup_sync"-->
+        <!--            android:drawableTint="@color/white"-->
+        <!--            android:focusable="true"-->
+        <!--            android:fontFamily="monospace"-->
+        <!--            android:maxWidth="40dp"-->
+        <!--            android:maxHeight="40dp"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:text="RESET"-->
+        <!--            android:textSize="10dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/preloadObstaclesButton" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/connect_button"-->
-<!--            android:layout_width="126dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:background="@null"-->
-<!--            android:backgroundTint="#E81111"-->
-<!--            android:clickable="true"-->
-<!--            android:drawableLeft="@android:drawable/stat_sys_data_bluetooth"-->
-<!--            android:drawableTint="@color/white"-->
-<!--            android:focusable="true"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:maxWidth="40dp"-->
-<!--            android:maxHeight="40dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            android:visibility="invisible"-->
-<!--            android:text="BLUETOOTH"-->
-<!--            android:textSize="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/resetObstacles" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/start_robot"-->
+        <!--            android:layout_width="124dp"-->
+        <!--            android:layout_height="45dp"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:layout_marginEnd="300dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="@null"-->
+        <!--            android:backgroundTint="#E40F0F"-->
+        <!--            android:clickable="true"-->
+        <!--            android:drawableLeft="@android:drawable/ic_media_play"-->
+        <!--            android:drawableTint="@color/white"-->
+        <!--            android:focusable="true"-->
+        <!--            android:fontFamily="monospace"-->
+        <!--            android:maxWidth="40dp"-->
+        <!--            android:maxHeight="40dp"-->
 
-<!--        <Button-->
-<!--            android:id="@+id/discoverableBtn"-->
-<!--            style="@style/Base.Widget.AppCompat.Button.Colored"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:minWidth="200dp"-->
-<!--            android:text="Discoverable"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.853"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.803" />-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:text="BEGIN"-->
+        <!--            android:textSize="10dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/generator" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/start_robot"-->
-<!--            android:layout_width="124dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:layout_marginEnd="300dp"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:background="@null"-->
-<!--            android:backgroundTint="#E40F0F"-->
-<!--            android:clickable="true"-->
-<!--            android:drawableLeft="@android:drawable/ic_media_play"-->
-<!--            android:drawableTint="@color/white"-->
-<!--            android:focusable="true"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:maxWidth="40dp"-->
-<!--            android:maxHeight="40dp"-->
+        <!--        <Button-->
+        <!--            android:id="@+id/discoverableBtn"-->
+        <!--            style="@style/Base.Widget.AppCompat.Button.Colored"-->
+        <!--            android:layout_width="80dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:layout_marginTop="28dp"-->
+        <!--            android:fontFamily="monospace"-->
+        <!--            android:minWidth="200dp"-->
+        <!--            android:text="Discoverable"-->
 
-<!--            android:scaleType="fitCenter"-->
-<!--            android:text="BEGIN"-->
-<!--            android:textSize="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/generator" />-->
+        <!--            android:textSize="8dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.892"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@id/connect_button" />-->
+
+        <Button
+            android:id="@+id/connect_button"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginEnd="160dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:backgroundTint="#E81111"
+
+            android:clickable="true"
+            android:drawableTint="@color/white"
+            android:focusable="true"
+            android:fontFamily="monospace"
+            android:maxWidth="40dp"
+            android:maxHeight="40dp"
+            android:scaleType="fitCenter"
+            android:text="BLUETOOTH"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfPreloadedObstacles" />
 
         <view
             android:id="@+id/mapView"
@@ -181,35 +181,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <Button-->
-<!--            android:id="@+id/face_button"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:background="@drawable/border"-->
-<!--            android:text="Set Face"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#000"-->
-<!--            android:textSize="12dp"-->
-<!--            app:fontFamily="monospace"-->
-<!--            android:layout_marginLeft="50dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/mapView"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/obstacleInformation"/>-->
-<!--        <Switch-->
-<!--            android:id="@+id/reverse_switch"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Reverse"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:visibility="gone" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/face_button"-->
+        <!--            android:layout_width="20dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:background="@drawable/border"-->
+        <!--            android:text="Set Face"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="#000"-->
+        <!--            android:textSize="12dp"-->
+        <!--            app:fontFamily="monospace"-->
+        <!--            android:layout_marginLeft="50dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/mapView"-->
+        <!--            app:layout_constraintLeft_toRightOf="@id/obstacleInformation"/>-->
+        <!--        <Switch-->
+        <!--            android:id="@+id/reverse_switch"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Reverse"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:visibility="gone" />-->
 
         <Button
             android:id="@+id/sendMap"
             android:layout_width="215dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="4dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="#FF0000"
-            android:drawableLeft="@android:drawable/ic_menu_send"
+
             android:drawableTint="@color/white"
             android:fontFamily="monospace"
             android:text="Send Map"
@@ -219,207 +219,207 @@
             app:layout_constraintTop_toBottomOf="@+id/generator" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/popup_window"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/rectangle_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/mapView"
-                    app:layout_constraintEnd_toEndOf="@+id/mapView"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/mapView"
-                    app:layout_constraintTop_toTopOf="@+id/mapView">
+            android:id="@+id/popup_window"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rectangle_background"
+            app:layout_constraintBottom_toBottomOf="@+id/mapView"
+            app:layout_constraintEnd_toEndOf="@+id/mapView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mapView"
+            app:layout_constraintTop_toTopOf="@+id/mapView">
 
-                    <Button
-                        android:id="@+id/face_north"
-                        android:layout_width="125dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="monospace"
-                        android:padding="5dp"
-                        android:text="North"
-                        android:textColor="@color/white"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/face_north"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:text="North"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
-                        android:id="@+id/face_east"
-                        android:layout_width="30dp"
-                        android:layout_height="125dp"
-                        android:layout_marginRight="10dp"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="monospace"
-                        android:padding="8dp"
-                        android:text="East"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/face_east"
+                android:layout_width="30dp"
+                android:layout_height="125dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+                android:text="East"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
-                        android:id="@+id/face_south"
-                        android:layout_width="125dp"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="monospace"
-                        android:padding="5dp"
-                        android:text="South"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <Button
+                android:id="@+id/face_south"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:text="South"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
-                    <Button
-                        android:id="@+id/face_west"
-                        android:layout_width="30dp"
-                        android:layout_height="125dp"
-                        android:layout_marginLeft="10dp"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="monospace"
-                        android:padding="8dp"
-                        android:text="West"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/face_west"
+                android:layout_width="30dp"
+                android:layout_height="125dp"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+                android:text="West"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
-                        android:id="@+id/editText"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_background_2"
-                        android:fontFamily="monospace"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_background_2"
+                android:fontFamily="monospace"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
-                        android:id="@+id/saveButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/red"
-                        android:fontFamily="monospace"
-                        android:text="Save"
-                        android:textSize="12dp"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText" />
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/popup_window_robot"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/rectangle_background"
-                    android:elevation="5dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/mapView"
-                    app:layout_constraintEnd_toEndOf="@+id/mapView"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/mapView"
-                    app:layout_constraintTop_toTopOf="@+id/mapView">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/popup_window_robot"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/rectangle_background"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mapView"
+            app:layout_constraintEnd_toEndOf="@+id/mapView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/mapView"
+            app:layout_constraintTop_toTopOf="@+id/mapView">
 
-                    <Button
-                        android:id="@+id/finalise_robot"
-                        android:layout_width="90dp"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="monospace"
-                        android:padding="5dp"
-                        android:text="Confirm"
-                        android:textSize="15sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/remove_robot"
-                        app:layout_constraintRight_toRightOf="parent" />
+            <Button
+                android:id="@+id/finalise_robot"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:text="Confirm"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/remove_robot"
+                app:layout_constraintRight_toRightOf="parent" />
 
-                    <Button
-                        android:id="@+id/remove_robot"
-                        android:layout_width="90dp"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="monospace"
-                        android:padding="5dp"
-                        android:text="Remove"
-                        android:textSize="15sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/finalise_robot" />
-
-
-                    <TextView
-                        android:id="@+id/popup_robotText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginBottom="100dp"
-                        android:gravity="center_horizontal|top"
-                        android:text="Robot Coordinates"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        app:fontFamily="monospace"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinner_robot_x"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_background_2"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toTopOf="@+id/finalise_robot"
-                        app:layout_constraintEnd_toStartOf="@+id/spinner_robot_y"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
-
-                    <Spinner
-                        android:id="@+id/spinner_robot_y"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_background_2"
-                        app:layout_constraintBottom_toTopOf="@+id/finalise_robot"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/spinner_robot_x"
-                        app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
-
-                    <Spinner
-                        android:id="@+id/spinner_robot_facing"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_background_2"
-                        app:layout_constraintBottom_toTopOf="@+id/spinner_robot_y"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/remove_robot"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:text="Remove"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/finalise_robot" />
 
 
-                <TableLayout
-                    android:id="@+id/textTableLayout"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/border_3"
-                    android:stretchColumns="0,1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mapView"
-                    app:layout_constraintVertical_bias="0"> <!-- stretch the second column of the layout-->
+            <TextView
+                android:id="@+id/popup_robotText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="100dp"
+                android:gravity="center_horizontal|top"
+                android:text="Robot Coordinates"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:fontFamily="monospace"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_robot_x"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_background_2"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/finalise_robot"
+                app:layout_constraintEnd_toStartOf="@+id/spinner_robot_y"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
+
+            <Spinner
+                android:id="@+id/spinner_robot_y"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_background_2"
+                app:layout_constraintBottom_toTopOf="@+id/finalise_robot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spinner_robot_x"
+                app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
+
+            <Spinner
+                android:id="@+id/spinner_robot_facing"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_background_2"
+                app:layout_constraintBottom_toTopOf="@+id/spinner_robot_y"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_robotText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TableLayout
+            android:id="@+id/textTableLayout"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/border_3"
+            android:stretchColumns="0,1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapView"
+            app:layout_constraintVertical_bias="0"> <!-- stretch the second column of the layout-->
 
             <TableRow
 
@@ -513,8 +513,8 @@
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="12sp"
-                    app:fontFamily="monospace"
                     android:textStyle="bold"
+                    app:fontFamily="monospace"
                     app:layout_anchorGravity="center" />
 
             </TableRow>
@@ -549,13 +549,13 @@
                 android:id="@+id/initialObstacleFace"
                 android:layout_width="34px"
                 android:layout_height="34px"
-                android:src="@drawable/pink_box"
                 android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/pink_box"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:focusable="true" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/initialObstacleId"
@@ -576,7 +576,7 @@
         <TableLayout
             android:id="@+id/generator"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="@+id/mapView"
             app:layout_constraintTop_toBottomOf="@+id/mapView">
@@ -584,36 +584,34 @@
             <TableRow
                 android:id="@+id/generator_header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginTop="0.5dp">
-
 
 
                 <TextView
                     android:id="@+id/obstacleGenerator"
                     android:layout_width="120dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/border"
                     android:padding="8dp"
                     android:text="@string/obstacle_generator"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="8dp"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:id="@+id/pacbotGenerator"
                     android:layout_width="94dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/border"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="1dp"
+                    android:background="@drawable/border"
                     android:padding="8dp"
                     android:text="@string/pacbot_generator"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="8dp"
                     app:fontFamily="monospace" />
-
 
 
             </TableRow>
@@ -641,202 +639,202 @@
                     android:padding="5dip"
                     android:text="No."
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:layout_height="23dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
-                    android:layout_marginLeft="1dp"
                     android:text="Row"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:layout_height="23dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
                     android:text="Col"
-                    android:layout_marginLeft="1dp"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:layout_height="23dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
-                    android:layout_marginLeft="1dp"
                     android:text="Face"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:layout_height="23dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
-                    android:layout_marginLeft="1dp"
                     android:text="Remove"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
                 <TextView
                     android:layout_height="23dp"
+                    android:layout_marginLeft="1dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
                     android:gravity="center"
                     android:padding="5dip"
                     android:text="Save"
-                    android:layout_marginLeft="1dp"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="12dp"
+                    android:textStyle="bold"
                     app:fontFamily="monospace" />
 
             </TableRow>
         </TableLayout>
 
-<!--        <Spinner-->
-<!--            android:id="@+id/numberOfPreloadedObstacles"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="64dp"-->
-<!--            android:layout_marginBottom="44dp"-->
-<!--            android:background="@android:drawable/btn_dropdown"-->
-<!--            android:spinnerMode="dropdown"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/d_pad"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/obstacle_background"-->
-<!--            app:layout_constraintVertical_bias="0.0"-->
-<!--            tools:layout_editor_absoluteX="494dp" />-->
+        <!--        <TableLayout-->
+        <!--            android:id="@+id/btnTableLayout"-->
+        <!--            android:layout_width="570dp"-->
+        <!--            android:layout_height="90dp"-->
+        <!--            android:layout_marginTop="801dp"-->
+        <!--            android:background="@drawable/roundedbar"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"> &lt;!&ndash; stretch the second column of the layout&ndash;&gt;-->
 
-<!--        <TableLayout-->
-<!--            android:id="@+id/btnTableLayout"-->
-<!--            android:layout_width="570dp"-->
-<!--            android:layout_height="90dp"-->
-<!--            android:layout_marginTop="801dp"-->
-<!--            android:background="@drawable/roundedbar"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"> &lt;!&ndash; stretch the second column of the layout&ndash;&gt;-->
+        <!--            &lt;!&ndash; new first row of the table layout&ndash;&gt;-->
+        <!--            <TableRow-->
+        <!--                android:id="@+id/btnfirstRow"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_gravity="center_vertical"-->
+        <!--                android:paddingTop="13dp"-->
+        <!--                android:paddingBottom="10dp" />-->
+        <!--            &lt;!&ndash; second row of the table layout&ndash;&gt;-->
+        <!--            <TableRow-->
+        <!--                android:id="@+id/secondBtnRow"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent">-->
 
-<!--            &lt;!&ndash; new first row of the table layout&ndash;&gt;-->
-<!--            <TableRow-->
-<!--                android:id="@+id/btnfirstRow"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:paddingTop="13dp"-->
-<!--                android:paddingBottom="10dp" />-->
-<!--            &lt;!&ndash; second row of the table layout&ndash;&gt;-->
-<!--            <TableRow-->
-<!--                android:id="@+id/secondBtnRow"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
+        <!--                &lt;!&ndash; first element of the row&ndash;&gt;-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/connect_Text"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginStart="12dp"-->
+        <!--                    android:text="Bluetooth"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#000"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:fontFamily="@font/main_font"-->
+        <!--                    app:layout_anchorGravity="center" />-->
 
-<!--                &lt;!&ndash; first element of the row&ndash;&gt;-->
-<!--                <TextView-->
-<!--                    android:id="@+id/connect_Text"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="12dp"-->
-<!--                    android:text="Bluetooth"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:fontFamily="@font/main_font"-->
-<!--                    app:layout_anchorGravity="center" />-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/reset_Text"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginStart="12dp"-->
+        <!--                    android:text="Reset"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#000"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:fontFamily="@font/main_font"-->
+        <!--                    app:layout_anchorGravity="center" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/reset_Text"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="12dp"-->
-<!--                    android:text="Reset"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:fontFamily="@font/main_font"-->
-<!--                    app:layout_anchorGravity="center" />-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/robot_Text"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginStart="12dp"-->
+        <!--                    android:text="Generate"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#000"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:fontFamily="@font/main_font"-->
+        <!--                    app:layout_anchorGravity="center" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/robot_Text"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="12dp"-->
-<!--                    android:text="Generate"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:fontFamily="@font/main_font"-->
-<!--                    app:layout_anchorGravity="center" />-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/path_Text"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginStart="12dp"-->
+        <!--                    android:text="Path"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#000"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:fontFamily="@font/main_font"-->
+        <!--                    app:layout_anchorGravity="center" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/path_Text"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="12dp"-->
-<!--                    android:text="Path"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:fontFamily="@font/main_font"-->
-<!--                    app:layout_anchorGravity="center" />-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/start_Text"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="40dp"-->
+        <!--                    android:layout_marginStart="12dp"-->
+        <!--                    android:text="Start"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#000"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:fontFamily="@font/main_font"-->
+        <!--                    app:layout_anchorGravity="center" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/start_Text"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="12dp"-->
-<!--                    android:text="Start"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:fontFamily="@font/main_font"-->
-<!--                    app:layout_anchorGravity="center" />-->
+        <!--            </TableRow>-->
 
-<!--            </TableRow>-->
+        <!--        </TableLayout>-->
 
-<!--        </TableLayout>-->
+        <Spinner
+            android:id="@+id/numberOfPreloadedObstacles"
+            android:layout_width="215dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-4dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toTopOf="@+id/d_pad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sendMap"
 
-<!--        <Button-->
-<!--            android:id="@+id/preloadObstaclesButton"-->
-<!--            android:layout_width="124dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            android:backgroundTint="#EF0C0C"-->
-<!--            android:drawableLeft="@android:drawable/ic_menu_upload"-->
-<!--            android:drawableTint="@color/white"-->
-<!--            android:drawableTintMode="src_in"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:text="Preload"-->
-<!--            android:textSize="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/sendMap" />-->
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/preloadObstaclesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginEnd="36dp"
+            android:backgroundTint="#EF0C0C"
+            android:drawableTint="@color/white"
+            android:drawableTintMode="src_in"
+            android:fontFamily="monospace"
+            android:text="Preload"
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfPreloadedObstacles" />
 
         <ImageButton
             android:id="@+id/generateRobot"
             android:layout_width="94dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="33dp"
             android:adjustViewBounds="true"
             android:background="@drawable/border"
@@ -853,16 +851,15 @@
         <TableLayout
             android:id="@+id/d_pad"
             android:layout_width="215dp"
-            android:layout_height="150dp"
-
+            android:layout_height="140dp"
             android:background="@drawable/border_4"
             android:gravity="center_vertical"
-            app:layout_constraintLeft_toLeftOf="@id/obstacle_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sendMap"
+            app:layout_constraintLeft_toLeftOf="@id/obstacle_background"
+            app:layout_constraintTop_toBottomOf="@id/connect_button"
 
 
-           >
+            >
 
             <TableRow
                 android:id="@+id/dpad_row1"
@@ -947,16 +944,14 @@
 
                 <Button
                     android:id="@+id/Start"
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:src="#E40F0F"
                     android:text="Start"
                     android:textAlignment="center"
                     android:textColor="#FFF"
                     android:textSize="9dp"
-                    app:fontFamily="monospace"
-                    android:layout_width="65dp"
-                    android:layout_height="match_parent"
-                    android:src="#E40F0F"
-                    />
-
+                    app:fontFamily="monospace" />
 
 
                 <ImageButton
@@ -970,9 +965,9 @@
                     android:maxWidth="50dp"
                     android:maxHeight="50dp"
                     android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_play_arrow_24"
                     tools:layout_editor_absoluteX="463dp"
-                    tools:layout_editor_absoluteY="856dp"
-                    android:src="@drawable/baseline_play_arrow_24"/>
+                    tools:layout_editor_absoluteY="856dp" />
 
             </TableRow>
 

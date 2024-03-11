@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -330,55 +331,92 @@ public class Connect extends DrawerBaseActivity {
             String connectionStatus = intent.getStringExtra("ConnectionStatus");
             myBTConnectionDevice = intent.getParcelableExtra("Device");
 
+            checkBTPermission();
+
+            if(connectionStatus == null) return;
+
             //DISCONNECTED FROM BLUETOOTH CHAT
             if (connectionStatus.equals("disconnect")) {
 
-                Log.d("ConnectActivity:", "Device Disconnected");
-
-                //CHECK FOR NOT NULL
-                if (connectIntent != null) {
-                    //Stop Bluetooth Connection Service
-                    stopService(connectIntent);
-                }
-
+                Log.d("ConnectAcitvity:", "Device Disconnected");
 
                 //RECONNECT DIALOG MSG
-                AlertDialog alertDialog = new AlertDialog.Builder(Connect.this).create();
+                android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(Connect.this).create();
                 alertDialog.setTitle("BLUETOOTH DISCONNECTED");
-                if (ActivityCompat.checkSelfPermission(Connect.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                alertDialog.setMessage("Connection with device: '" + myBTConnectionDevice.getName() + "' has ended. Do you want to reconnect?");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                startBTConnection(myBTConnectionDevice, myUUID);
+                alertDialog.setMessage("Connection with device: " + myBTConnectionDevice.getName() + " has ended. Do you want to reconnect?");
 
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //START BT CONNECTION SERVICE
+                        Intent connectIntent = new Intent(Connect.this, BluetoothConnectionService.class);
+                        connectIntent.putExtra("serviceType", "connect");
+                        connectIntent.putExtra("device", myBTConnectionDevice);
+                        connectIntent.putExtra("id", myUUID);
+                        startService(connectIntent);
+                    }
+                }, 5000);
+
                 alertDialog.show();
 
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //CLOSE DIALOG
+                        alertDialog.cancel();
+                    }
+                }, 1000);
+
+//                //RECONNECT DIALOG MSG
+//                AlertDialog alertDialog = new AlertDialog.Builder(Connect.this).create();
+//                alertDialog.setTitle("BLUETOOTH DISCONNECTED");
+//                alertDialog.setMessage("Connection with device: '"+myBTConnectionDevice.getName()+"' has ended. Do you want to reconnect?");
+//                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Constants.setConnected(false);
+//                                startBTConnection(myBTConnectionDevice, myUUID);
+//                            }
+//                        });
+//                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                alertDialog.show();
+//
+//
+//                // FIX 5: delay btn click
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        checkBTPermission();
+//
+//                        //CHECK FOR NOT NULL
+//                        if (connectIntent != null) {
+//                            //Stop Bluetooth Connection Service
+//                            stopService(connectIntent);
+//
+//                            Constants.setConnected(false);
+//                        }
+//
+//                        Toast.makeText(Connect.this, "Reconnecting (delayed): " + myBTConnectionDevice.getName(),
+//                                Toast.LENGTH_LONG).show();
+//                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+//
+//
+//                    }
+//                }, 3000);
 
             }
 
             //SUCCESSFULLY CONNECTED TO BLUETOOTH DEVICE
             else if (connectionStatus.equals("connect")) {
 
-
-                Log.d("ConnectActivity:", "Device Connected");
+                Log.d("ConnectAcitvity:", "Device Connected");
                 Toast.makeText(Connect.this, "Connection Established: " + myBTConnectionDevice.getName(),
                         Toast.LENGTH_LONG).show();
             }
@@ -391,7 +429,6 @@ public class Connect extends DrawerBaseActivity {
 
         }
     };
-
 /*
     The BroadcastReceiver that listens for bluetooth broadcasts
 */
