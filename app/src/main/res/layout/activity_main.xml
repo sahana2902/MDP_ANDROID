@@ -432,12 +432,12 @@
 
                 <TextView
                     android:id="@+id/notificationsHeader"
-                    android:layout_height="18dp"
+                    android:layout_height="15dp"
                     android:layout_span="2"
                     android:text="Notifications"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
                     app:layout_anchorGravity="center" />
@@ -456,13 +456,13 @@
 
                 <TextView
                     android:id="@+id/notifications"
-                    android:layout_height="19dp"
+                    android:layout_height="15dp"
                     android:layout_span="2"
 
                     android:text=""
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
                     app:layout_anchorGravity="center" />
@@ -487,7 +487,7 @@
                     android:text="@string/robot_location_header"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
                     app:layout_anchorGravity="center"
@@ -506,13 +506,13 @@
                 <TextView
                     android:id="@+id/robot_location"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="15dp"
                     android:layout_span="2"
                     android:background="@drawable/border"
                     android:text=""
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:fontFamily="monospace"
                     app:layout_anchorGravity="center" />
@@ -639,7 +639,7 @@
                     android:padding="5dip"
                     android:text="No."
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 
@@ -652,7 +652,7 @@
                     android:padding="5dip"
                     android:text="Row"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 
@@ -665,7 +665,7 @@
                     android:padding="5dip"
                     android:text="Col"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 
@@ -678,7 +678,7 @@
                     android:padding="5dip"
                     android:text="Face"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 
@@ -691,7 +691,7 @@
                     android:padding="5dip"
                     android:text="Remove"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 
@@ -704,7 +704,7 @@
                     android:padding="5dip"
                     android:text="Save"
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     app:fontFamily="monospace" />
 

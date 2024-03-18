@@ -136,9 +136,9 @@ public class MapArena extends View { //implements Serializable
             obstacleNumberText.setText(String.valueOf(obstacleNumber));
             obstacleNumberText.setTextColor(Color.BLACK);
             obstacleNumberText.setTypeface(mainFont, Typeface.BOLD);
-            int textSize = 15;
+            int textSize = 10;
             obstacleNumberText.setTextSize(textSize);
-            obstacleNumberText.setPadding(17, 5, 0, 10);
+            obstacleNumberText.setPadding(17, 0, 0, 0);
             int[] obstacleCoordinates = obstacleDetails.getCoordinates();
             int xCoordinate = obstacleCoordinates[0];
             int yCoordinate = obstacleCoordinates[1];
@@ -148,10 +148,10 @@ public class MapArena extends View { //implements Serializable
             xCoordinateText.setTypeface(mainFont, Typeface.BOLD);
             xCoordinateText.setTextSize(textSize);
             if(xCoordinate >= 10) {
-                xCoordinateText.setPadding(18, 0, 0, 10);
+                xCoordinateText.setPadding(30, 0, 0, 0);
             }
             else {
-                xCoordinateText.setPadding(23, 0, 0, 10);
+                xCoordinateText.setPadding(33, 0, 0, 0);
             }
             EditText yCoordinateText = new EditText(this.getContext());
             yCoordinateText.setText(String.valueOf(yCoordinate));
@@ -159,17 +159,17 @@ public class MapArena extends View { //implements Serializable
             yCoordinateText.setTextSize(textSize);
             yCoordinateText.setTypeface(mainFont, Typeface.BOLD);
             if(yCoordinate >= 10) {
-                yCoordinateText.setPadding(23, 5, 0, 10);
+                yCoordinateText.setPadding(50, 0, 0, 0);
             }
             else{
-                yCoordinateText.setPadding(30, 5, 0, 10);
+                yCoordinateText.setPadding(53, 0, 0, 0);
             }
             TextView faceText = new TextView(this.getContext());
             faceText.setText(getTargetFaceDisplayString(obstacleDetails.getObstacleFace()));
             faceText.setTextColor(Color.BLACK);
             faceText.setTextSize(textSize);
             faceText.setTypeface(mainFont, Typeface.BOLD);
-            faceText.setPadding(40, 5, 0, 10);
+            faceText.setPadding(60, 0, 0, 0);
             // Delete obstacle button
             int desiredWidthInPixels = 16; // Replace with your desired width
             int desiredHeightInPixels = 16; // Replace with your desired height
@@ -181,7 +181,7 @@ public class MapArena extends View { //implements Serializable
             Drawable scaledDrawable = new BitmapDrawable(getResources(), scaledBitmap);
             deleteObstacleButton.setImageDrawable(scaledDrawable);
             //deleteObstacleButton.setPadding(40, 10, 0, 10);
-            deleteObstacleButton.setPadding(42, 10, 0, 10);
+            deleteObstacleButton.setPadding(52, 3, 0, 0);
             // Save obstacle co-ordinates
             ImageButton saveCoordinatesButton = new ImageButton(this.getContext());
             saveCoordinatesButton.setBackgroundColor(Color.parseColor("#eec9d2"));
@@ -191,7 +191,7 @@ public class MapArena extends View { //implements Serializable
             Drawable scaledSaveIconDrawable = new BitmapDrawable(getResources(), scaledSaveIconBitmap);
             saveCoordinatesButton.setImageDrawable(scaledSaveIconDrawable);
             //saveCoordinatesButton.setPadding(63, 10, 0, 10);
-            saveCoordinatesButton.setPadding(50, 10, 0, 10);
+            saveCoordinatesButton.setPadding(56, 3, 0, 0);
             deleteObstacleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -422,25 +422,30 @@ public class MainActivity extends DrawerBaseActivity {
                                                           //        <item>testing 4</item> userInput.equals("testing 4")
                                                           //        <item>thurs testing 1</item> userInput.equals("thurs testing 1")
                                                           //        <item>thurs testing 2</item> userInput.equals("thurs testing 2")
-
+                                                          HashMap<Integer, Integer> coord = new HashMap<>();
+                                                          ArrayList<String> faces = new ArrayList<>();
                                                           if (userInput.equals("2021 s2 run 1")) {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
-                                                              coord.put(1, 18);
-                                                              coord.put(6, 12);
-                                                              coord.put(14, 16);
-                                                              coord.put(10, 6);
-                                                              coord.put(13, 2);
-                                                              coord.put(18, 9);
-                                                              ArrayList<String> faces = new ArrayList<>();
+                                                              coord.clear();
+                                                              faces.clear();
+
+                                                              coord.put(1, 19);
+                                                              coord.put(6, 7);
+                                                              coord.put(15, 2);
+                                                              coord.put(11, 12);
+                                                              coord.put(11, 13);
+                                                              coord.put(19, 8);
+                                                              coord.put(17, 18);
+
                                                               faces.add("S");
-                                                              faces.add("N");
+                                                              faces.add("S");
+                                                              faces.add("W");
                                                               faces.add("W");
                                                               faces.add("E");
-                                                              faces.add("E");
                                                               faces.add("W");
+                                                              faces.add("S");
                                                               int i =0;
                                                               int newObstacleNumber = 1;
                                                               for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
@@ -531,18 +536,21 @@ public class MainActivity extends DrawerBaseActivity {
                                                               outputNotifView.setText(outputNotif);
 
                                                           }
+
                                                           else if (userInput.equals("2021 s2 run 2")) {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
+
                                                               coord.put(11, 4);
                                                               coord.put(6, 10);
                                                               coord.put(1, 16);
                                                               coord.put(13, 14);
                                                               //coord.put(18, 3);
                                                               coord.put(18, 16);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("E");
                                                               faces.add("N");
                                                               faces.add("E");
@@ -639,18 +647,20 @@ public class MainActivity extends DrawerBaseActivity {
                                                               outputNotifView.setText(outputNotif);
 
                                                           }
+
                                                           else if (userInput.equals("2022 s1 run 1")) {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(2, 12);
                                                               coord.put(10, 6);
                                                               coord.put(11, 18);
                                                               coord.put(19, 15);
                                                               coord.put(15, 9);
                                                               coord.put(18, 2);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("N");
                                                               faces.add("E");
                                                               faces.add("S");
@@ -747,7 +757,8 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(1, 16);
                                                               coord.put(5, 12);
                                                               coord.put(8, 5);
@@ -755,7 +766,7 @@ public class MainActivity extends DrawerBaseActivity {
                                                               coord.put(15, 2);
                                                               coord.put(16, 19);
                                                               coord.put(19, 9);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("E");
                                                               faces.add("S");
                                                               faces.add("N");
@@ -854,24 +865,23 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
-                                                              coord.put(5, 15);
-                                                              coord.put(3, 8);
-                                                              coord.put(12, 3);
-                                                              coord.put(9, 11);
-                                                              coord.put(15, 9);
-                                                              coord.put(7, 8);
-                                                              coord.put(18, 18);
-                                                              coord.put(2,8);
-                                                              ArrayList<String> faces = new ArrayList<>();
-                                                              faces.add("E");
+                                                              coord.clear();
+                                                              faces.clear();
+                                                              coord.put(1, 19);
+                                                              coord.put(6, 7);
+                                                              coord.put(15, 2);
+                                                              coord.put(11, 12);
+                                                              coord.put(11, 13);
+                                                              coord.put(19, 8);
+                                                              coord.put(17, 18);
+
                                                               faces.add("S");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("W");
                                                               faces.add("E");
                                                               faces.add("W");
-                                                              faces.add("N");
-                                                              faces.add("N");
                                                               faces.add("S");
-                                                              faces.add("N");
                                                               int i =0;
                                                               int newObstacleNumber = 1;
                                                               for (Map.Entry<Integer, Integer> set : coord.entrySet()) {
@@ -962,7 +972,8 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(1, 7);
                                                               coord.put(1, 15);
                                                               coord.put(8, 4);
@@ -971,7 +982,7 @@ public class MainActivity extends DrawerBaseActivity {
                                                               coord.put(12, 2);
                                                               coord.put(12, 4);
                                                               coord.put(16,3);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("S");
                                                               faces.add("S");
                                                               faces.add("W");
@@ -1070,14 +1081,15 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(2, 12);
                                                               coord.put(6, 10);
                                                               coord.put(15, 9);
                                                               coord.put(18, 2);
                                                               coord.put(19, 15);
                                                               coord.put(11, 18);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("N");
                                                               faces.add("E");
                                                               faces.add("N");
@@ -1173,14 +1185,15 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(10, 6);
                                                               coord.put(6, 12);
                                                               coord.put(11, 18);
                                                               coord.put(15, 9);
                                                               coord.put(17, 2);
                                                               coord.put(15, 16);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("N");
                                                               faces.add("S");
                                                               faces.add("S");
@@ -1277,7 +1290,8 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(10, 18);
                                                               coord.put(5, 1);
                                                               coord.put(5, 9);
@@ -1286,7 +1300,7 @@ public class MainActivity extends DrawerBaseActivity {
                                                               coord.put(18, 19);
                                                               coord.put(11, 14);
                                                               coord.put(19,9);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("S");
                                                               faces.add("E");
                                                               faces.add("S");
@@ -1384,7 +1398,8 @@ public class MainActivity extends DrawerBaseActivity {
                                                               int mapCellSize = (int) map.getCellSize();
                                                               int xMapCoordinate = 1;
                                                               int yMapCoordinate = 19;
-                                                              HashMap<Integer, Integer> coord = new HashMap<>();
+                                                              coord.clear();
+                                                              faces.clear();
                                                               coord.put(2, 11);
                                                               coord.put(2, 12);
                                                               coord.put(6, 10);
@@ -1393,7 +1408,7 @@ public class MainActivity extends DrawerBaseActivity {
                                                               coord.put(18, 2);
                                                               coord.put(19, 15);
                                                               coord.put(11,18);
-                                                              ArrayList<String> faces = new ArrayList<>();
+
                                                               faces.add("S");
                                                               faces.add("N");
                                                               faces.add("E");
@@ -1488,6 +1503,132 @@ public class MainActivity extends DrawerBaseActivity {
                                                               outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
                                                               outputNotifView.setText(outputNotif);
                                                           }
+                                                          else if (userInput.equals("mon testing")) {
+                                                              int mapCellSize = (int) map.getCellSize();
+                                                              int xMapCoordinate = 1;
+                                                              int yMapCoordinate = 19;
+                                                              coord.clear();
+                                                              faces.clear();
+                                                              coord.put(1, 19);
+                                                              coord.put(6, 7);
+                                                              coord.put(15, 2);
+                                                              coord.put(11, 12);
+                                                              coord.put(11, 13);
+                                                              coord.put(19, 8);
+                                                              coord.put(17, 18);
+                                                              ArrayList<Integer> xVal = new ArrayList<>();
+                                                              xVal.add(1);
+                                                              xVal.add(6);
+                                                              xVal.add(15);
+                                                              xVal.add(11);
+                                                              xVal.add(11);
+                                                              xVal.add(19);
+                                                              xVal.add(17);
+
+                                                              ArrayList<Integer> yVal = new ArrayList<>();
+                                                              yVal.add(19);
+                                                              yVal.add(7);
+                                                              yVal.add(2);
+                                                              yVal.add(12);
+                                                              yVal.add(13);
+                                                              yVal.add(8);
+                                                              yVal.add(18);
+
+                                                              faces.add("S");
+                                                              faces.add("S");
+                                                              faces.add("W");
+                                                              faces.add("W");
+                                                              faces.add("E");
+                                                              faces.add("W");
+                                                              faces.add("S");
+
+
+                                                              int newObstacleNumber = 1;
+                                                              for (int i=0; i < faces.size(); i++) {
+//                                                                  if (obstacleViews.size() + 1 == 2) {
+//                                                                      newObstacleNumber = 1;
+//                                                                  } else {
+
+//                                                                  while (obstacleViews.get(newObstacleNumber) != null) {
+//                                                                      newObstacleNumber++;
+//                                                                  }
+//                                                                  }
+
+                                                                  ConstraintLayout newObstacle = createNewObstacle(newObstacleNumber);
+                                                                  ConstraintLayout fullScreen = findViewById(R.id.fullScreen);
+                                                                  ConstraintSet constraintSet = new ConstraintSet();
+                                                                  constraintSet.clone(fullScreen);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.START);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.END);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.TOP);
+                                                                  constraintSet.clear(newObstacle.getId(), ConstraintSet.BOTTOM);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.START, R.id.fullScreen, ConstraintSet.START);
+                                                                  constraintSet.connect(newObstacle.getId(), ConstraintSet.TOP, R.id.fullScreen, ConstraintSet.TOP);
+
+                                                                  // Apply the constraints to the parent ConstraintLayout
+                                                                  constraintSet.applyTo(fullScreen);
+
+//                                                                  int xCoordinate = set.getKey();
+//                                                                  int yCoordinate = set.getValue();
+
+                                                                  int xCoordinate = ((xVal.get(i) + 1) * mapCellSize) + (int) map.getX();
+                                                                  int yCoordinate = ((19 - yVal.get(i)) * mapCellSize) + (int) map.getY();
+
+                                                                  Log.d("x", Integer.toString(xCoordinate));
+                                                                  Log.d("y", Integer.toString(yCoordinate));
+                                                                  //map.insertNewObstacleIntoArena(newObstacleNumber, xCoordinate, yCoordinate);
+
+                                                                  map.setObstacleCoord(new int[]{xCoordinate, yCoordinate});
+
+                                                                  String face = faces.get(i);
+                                                                  ObstacleDetails newObstacleDetails = new ObstacleDetails();
+                                                                  newObstacleDetails.setCoordinates(new int[]{xVal.get(i), yVal.get(i)});
+                                                                  obstacleFaceCur = obstacleFaceViews2.get(newObstacleNumber);
+
+                                                                  if(face.equals("N")) {
+                                                                      obstacleFaceCur.setRotation(0);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.NORTH);
+                                                                  }
+                                                                  else if(face.equals("E")) {
+                                                                      obstacleFaceCur.setRotation(90);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.EAST);
+                                                                  }
+                                                                  else if(face.equals("S")) {
+                                                                      obstacleFaceCur.setRotation(180);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.SOUTH);
+                                                                  }
+                                                                  else if(face.equals("W")) {
+                                                                      obstacleFaceCur.setRotation(270);
+                                                                      obstacleFaceCur.setVisibility(View.VISIBLE);
+                                                                      newObstacleDetails.setObstacleFace(ObstacleDetails.ObstacleFace.WEST);
+                                                                  }
+
+                                                                  Log.d("obs",face);
+
+
+
+
+
+                                                                  System.out.println(String.format("insert new obstacle coordinates: %d, %d", xCoordinate, yCoordinate));
+                                                                  map.obstacleInformation.put(newObstacleNumber, newObstacleDetails);
+
+                                                                  latestObstacleCoordinates.put(newObstacleNumber, new int[]{xVal.get(i), yVal.get(i)});
+                                                                  newObstacle.setX(xCoordinate);
+                                                                  newObstacle.setY(yCoordinate);
+                                                                  newObstacleNumber++;
+
+                                                              }
+
+                                                              map.generateObstacleInformationTableRows(obstacleInformationTable, obstacleViews, parentView, outputNotifView, latestObstacleCoordinates);
+                                                              map.invalidate();
+                                                              // Notification
+                                                              outputNotif = String.format("Obstacle: %d, Row: %d, Col: %d", newObstacleNumber, xMapCoordinate, yMapCoordinate);
+                                                              outputNotifView.setText(outputNotif);
+                                                          }
+
 
 
                     /*if (Constants.connected) {
@@ -2873,21 +3014,30 @@ public class MainActivity extends DrawerBaseActivity {
         } else if (prefix.equals("ROBOT")) {
             //SET A MAX AND MIN!!! -- 8 feb
             int col = parseInt(instructionList.get(1));
+            Log.d("col", Integer.toString(col));
             int row = parseInt(instructionList.get(2));
+            Log.d("row", Integer.toString(row));
             if (col < 1) {
                 col = Math.max(col, 1);
+
             } else {
                 col = Math.min(col, map.getCol() - 2);
             }
+            Log.d("final col", Integer.toString(col));
             if (row < 1) {
                 row = Math.max(row, 1);
             } else {
                 row = Math.min(row, map.getCol() - 2);
             }
+            Log.d("final row", Integer.toString(row));
             String face = instructionList.get(3);
             robot.setVisibility(View.VISIBLE);
             map.setOldRobotCoord(map.getCurCoord()[0], map.getCurCoord()[1]); // create tracks
+            Log.d("getcurcoord0", Integer.toString(map.getCurCoord()[0]));
+            Log.d("getcurcoord1", Integer.toString(map.getCurCoord()[1]));
             int[] newCoord = new int[]{col, row};
+            Log.d("newcoordcol", Integer.toString(col));
+            Log.d("newcoordrow", Integer.toString(row));
             map.setCurCoord(newCoord);
             rotation = map.convertFacingToRotation(face);
             map.saveFacingWithRotation(rotation);
