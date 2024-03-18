@@ -137,9 +137,9 @@ public class Connect extends DrawerBaseActivity {
                         //UnSelect Search Device List
                         lvNewDevices.setAdapter(myDeviceListAdapter);
                         Log.d(TAG, "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName());
-                        Toast.makeText(getApplicationContext(), "onItemClick: Paired Device = " + myBTPairedDevicesArrayList.get(i).getName(), Toast.LENGTH_LONG).show();
+
                         Log.d(TAG, "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress());
-                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + myBTPairedDevicesArrayList.get(i).getAddress(), Toast.LENGTH_LONG).show();
+
                     }
                 }
         );
@@ -161,15 +161,15 @@ public class Connect extends DrawerBaseActivity {
                         }
                         myBluetoothAdapter.cancelDiscovery();
                         Log.d(TAG, "onItemClick: Device Selected");
-                        Toast.makeText(getApplicationContext(), "onItemClick: Device Selected", Toast.LENGTH_LONG).show();
+
                         String deviceName = myBTDevicesArrayList.get(i).getName();
                         String deviceAddress = myBTDevicesArrayList.get(i).getAddress();
                         //UnSelect Paired Device List
                         lvPairedDevices.setAdapter(myPairedDeviceListAdapter);
                         Log.d(TAG, "onItemClick: DeviceName = " + deviceName);
-                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceName = " + deviceName, Toast.LENGTH_LONG).show();
+
                         Log.d(TAG, "onItemClick: DeviceAddress = " + deviceAddress);
-                        Toast.makeText(getApplicationContext(), "onItemClick: DeviceAddress = " + deviceAddress, Toast.LENGTH_LONG).show();
+
                         //CREATE BOND if > JELLY BEAN
                         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
                             Log.d(TAG, "Trying to pair with: " + deviceName);
@@ -210,8 +210,8 @@ public class Connect extends DrawerBaseActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
                     Log.d(TAG, "onClick: connect button");
-                    Toast.makeText(Connect.this, "onClick: connect button",
-                            Toast.LENGTH_LONG).show();
+
+
                     //START CONNECTION WITH THE BOUNDED DEVICE
                     Intent intent1 = new Intent();
                     intent1.setAction("com.example.mdpandroidcontroller.btConnectionStatus");
